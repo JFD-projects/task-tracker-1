@@ -1,0 +1,39 @@
+.add__list {
+  &-popup {
+    width: 240px;
+    height: 150px;
+    background: #ffffff;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.65);
+    border-radius: 10px;
+    padding: 18px;
+    position: relative;
+
+    .button {
+      width: 100%;
+      margin-top: 20px;
+    }
+    &-colors{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    &-close-btn{
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      cursor: pointer;
+    }
+    .badge{
+      width: 16px;
+      height: 16px;
+      position: static;
+      cursor: pointer;
+      border: 1px solid #ffffff;
+      &:active,
+      &.active{
+        border: 1px solid #525252;
+      }
+    }
+  }
+
+}
