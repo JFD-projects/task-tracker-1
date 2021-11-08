@@ -1,3 +1,3 @@
-export {default as List}  from "./SideBar/List";
-export {default as AddCategory} from "./AddCategory/AddCategory";
+export {default as List}  from "./list/List";
+export {default as AddCategory} from "./addList/addList";
 export {default as Tasks}  from "./Tasks/Tasks";

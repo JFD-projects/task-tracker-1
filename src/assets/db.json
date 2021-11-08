@@ -2,160 +2,208 @@
   "lists": [
     {
       "id": 1,
-      "name": "По дому",
+      "name": "Домашние",
       "colorId": 5
     },
     {
       "id": 2,
-      "name": "Фронт",
-      "colorId": 4
-    },
-    {
-      "id": 3,
-      "name": "Бэкэнд",
-      "colorId": 3
-    },
-    {
-      "id": 4,
       "name": "Авто",
       "colorId": 2
     },
     {
-      "id": 6,
-      "name": "Спорт",
-      "colorId": 3
-    },
-    {
-      "id": 7,
+      "id": 3,
       "name": "По курсам",
       "colorId": 7
     },
     {
       "name": "Заказы",
       "colorId": 8,
-      "id": 8
+      "id": 4
+    },
+    {
+      "name": "ФИЧИ",
+      "colorId": 6,
+      "id": 5
     }
   ],
   "tasks": [
     {
-      "id": 1,
-      "listId": 2,
-      "text": "Изучить JavaScript",
-      "completed": true
-    },
-    {
-      "id": 2,
-      "listId": 2,
-      "text": "Изучить паттерны проектирования",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "listId": 2,
-      "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
-      "completed": true
-    },
-    {
-      "id": 4,
-      "listId": 2,
-      "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
-    },
-    {
+      "id": 6,
       "listId": 1,
-      "text": "test",
-      "completed": false,
-      "id": 6
+      "text": "Убраться к приходу гостей (пылесос, протереть пыль, помыть посуду)",
+      "attitude": "plan_tasks"
     },
     {
+      "id": 8,
       "listId": 1,
-      "text": "qweqwe",
-      "completed": false,
-      "id": 7
+      "text": "Приготовить ужин",
+      "attitude": "process_tasks"
     },
     {
+      "id": 10,
+      "listId": 2,
+      "text": "Заменить фильтра (воздушный, салон)",
+      "attitude": "plan_tasks"
+    },
+    {
+      "id": 15,
+      "listId": 3,
+      "text": "50 Projects In 50 Days - HTML, CSS & JavaScript",
+      "attitude": "plan_tasks"
+    },
+    {
+      "id": 16,
+      "listId": 3,
+      "text": "[Udemy] CSS - The Complete Guide 2021 (incl. Flexbox, Grid & Sass)",
+      "attitude": "ready_tasks"
+    },
+    {
+      "id": 17,
+      "listId": 3,
+      "text": "[Udemy] React с нуля для начинающих 3 проекта в портфолио (2020)",
+      "attitude": "ready_tasks"
+    },
+    {
+      "id": 19,
       "listId": 1,
-      "text": "qweqwe",
-      "completed": false,
-      "id": 8
+      "text": "Разобраться с протекающим краном",
+      "attitude": "ready_tasks"
+    },
+    {
+      "id": 21,
+      "listId": 2,
+      "text": "Провести ТО",
+      "attitude": "ready_tasks"
     },
     {
       "listId": 4,
-      "text": "Купить 1984!",
-      "completed": true,
-      "id": 10
+      "text": "Забрать заказ в Озоне до понедельника",
+      "attitude": "plan_tasks",
+      "id": 23
     },
     {
-      "listId": 7,
-      "text": "Сделали сайдбар",
-      "completed": true,
-      "id": 15
+      "listId": 5,
+      "text": "Темная тема?",
+      "attitude": "plan_tasks",
+      "id": 24
     },
     {
-      "listId": 7,
-      "text": "Сделали список задач",
-      "completed": true,
-      "id": 16
+      "listId": 5,
+      "text": "Редакс",
+      "attitude": "ready_tasks",
+      "id": 25
     },
     {
-      "listId": 7,
-      "text": "Сделали удаление и редактирование задач и списков",
-      "completed": false,
-      "id": 17
+      "listId": 5,
+      "text": "Страница одной задачи",
+      "attitude": "plan_tasks",
+      "id": 26
     },
     {
-      "listId": 1,
-      "text": "Привет",
-      "completed": false,
-      "id": 19
+      "listId": 5,
+      "text": "Логин",
+      "attitude": "plan_tasks",
+      "id": 27
     },
     {
-      "listId": 3,
-      "text": "Node.js",
-      "completed": true,
-      "id": 20
+      "listId": 5,
+      "text": "Кастомный хук?",
+      "attitude": "ready_tasks",
+      "id": 28
+    },
+    {
+      "listId": 5,
+      "text": "Регистрация",
+      "attitude": "plan_tasks",
+      "id": 29
+    },
+    {
+      "listId": 5,
+      "text": "Статистика с графиками",
+      "attitude": "plan_tasks",
+      "id": 30
+    },
+    {
+      "listId": 5,
+      "text": "Разделение на задачи (3 типа)",
+      "attitude": "ready_tasks",
+      "id": 31
+    },
+    {
+      "listId": 5,
+      "text": "Loader",
+      "attitude": "plan_tasks",
+      "id": 32
+    },
+    {
+      "listId": 5,
+      "text": "Базовые компоненты (input, button и т. д.) ",
+      "attitude": "plan_tasks",
+      "id": 33
+    },
+    {
+      "listId": 5,
+      "text": "Календарь задач",
+      "attitude": "plan_tasks",
+      "id": 34
+    },
+    {
+      "listId": 5,
+      "text": "Драг энд дроп",
+      "attitude": "plan_tasks",
+      "id": 35
+    },
+    {
+      "listId": 5,
+      "text": "удаление задач при удалении списка",
+      "attitude": "process_tasks",
+      "id": 36
+    },
+    {
+      "listId": 5,
+      "text": "количество задач в подкатегориях",
+      "attitude": "plan_tasks",
+      "id": 37
+    },
+    {
+      "listId": 5,
+      "text": "not found при изменении query номера листа",
+      "attitude": "ready_tasks",
+      "id": 41
     }
   ],
   "colors": [
     {
       "id": 1,
-      "hex": "#C9D1D3",
-      "name": "grey"
+      "hex": "#6c757d"
     },
     {
       "id": 2,
-      "hex": "#42B883",
-      "name": "green"
+      "hex": "#28a745"
     },
     {
       "id": 3,
-      "hex": "#64C4ED",
-      "name": "blue"
+      "hex": "#007bff"
     },
     {
       "id": 4,
-      "hex": "#FFBBCC",
-      "name": "pink"
+      "hex": "#e83e8c"
     },
     {
       "id": 5,
-      "hex": "#B6E6BD",
-      "name": "lime"
+      "hex": "#20c997"
     },
     {
       "id": 6,
-      "hex": "#C355F5",
-      "name": "purple"
+      "hex": "#6f42c1"
     },
     {
       "id": 7,
-      "hex": "#110133",
-      "name": "black"
+      "hex": "#343a40"
     },
     {
       "id": 8,
-      "hex": "#FF6464",
-      "name": "red"
+      "hex": "#dc3545"
     }
   ]
 }

@@ -4,29 +4,5 @@
   height: 10px;
   border-radius: 30px;
 }
-.badge--grey {
-  background-color: #aeb3b6;
-}
-.badge--pink {
-  background-color: #FFBBCC;
-}
-.badge--lime {
-  background-color: #B6E6BD;
-}
-.badge--purple {
-  background-color: #C355F5;
-}
-.badge--black {
-  background-color: #413263;
-}
-.badge--red {
-  background-color: #FF6464;
-}
-.badge--green {
-  background-color: #42B883;
-}
-.badge--blue {
-  background-color: #64C4ED;
-}
 
 /*# sourceMappingURL=badge.css.map */

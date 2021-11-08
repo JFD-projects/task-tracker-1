@@ -24,6 +24,26 @@
 .tasks img:hover {
   opacity: 1;
 }
+.tasks__nav-tabs {
+  display: flex;
+  border-bottom: 1px solid #dbdbdb;
+}
+.tasks__nav-tabs li {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-bottom: -1px;
+  border: 1px solid transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.tasks__nav-tabs li:hover {
+  border: 1px solid #ecebeb;
+}
+.tasks__nav-tabs li.active {
+  border: 1px solid #dbdbdb;
+  border-bottom: 1px solid #fff;
+}
 .tasks__items {
   margin-top: 30px;
 }
@@ -110,10 +130,13 @@
   margin-right: 10px;
 }
 
-.checkbox input {
+.tasks__items-row-attitude {
+  display: flex;
+}
+.tasks__items-row-attitude input {
   display: none;
 }
-.checkbox label {
+.tasks__items-row-attitude label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,23 +146,29 @@
   width: 20px;
   height: 20px;
 }
-.checkbox label img {
+.tasks__items-row-attitude label:not(:last-child) {
+  margin-right: 5px;
+}
+.tasks__items-row-attitude label img {
   position: relative;
   right: 7px;
 }
-.checkbox label:hover {
+.tasks__items-row-attitude label:hover {
   background-color: #f2f2f2;
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 }
-.checkbox label:hover img {
-  transition: opacity 0.25s ease-in-out;
+.tasks__items-row-attitude label:hover img {
+  transition: opacity 0.25s ease-in-out, filter 0.5s ease-in-out;
   opacity: 0.4;
+  filter: invert(0);
 }
-.checkbox input:checked + label {
+.tasks__items-row-attitude label:active {
   background-color: #4dd599;
   border-color: #4dd599;
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 }
-.checkbox input:checked + label img {
+.tasks__items-row-attitude label:active img {
+  transition: opacity 0.25s ease-in-out;
   opacity: 1;
   filter: invert(1);
 }

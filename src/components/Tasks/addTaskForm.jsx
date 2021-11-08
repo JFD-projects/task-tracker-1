@@ -1,28 +1,26 @@
 import React, {useState} from 'react';
 import addImg from "../../assets/img/add.svg";
-import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {postNewTask} from "../../redux/reducers/tasksReducer";
 
-const AddTaskForm = ({list, onAddTask}) => {
+const AddTaskForm = ({activeLink, list}) => {
     const [taskValue, setTaskValue] = useState('')
     const [formVisibility, setFormVisibility] = useState(false)
-    const [isSending, setIsSending] =useState(false)
-
+    const dispatch = useDispatch()
+    const isLoading = useSelector(state => state.tasks.isLoading.addTask)
     const toggleVisibility = () => {
         setFormVisibility(!formVisibility)
         setTaskValue('')
     }
-    const addTask = ()=>{
-        const objTask = {
-            listId: list.id,
-            text: taskValue,
-            completed: false
+    const addTask = () => {
+        if(taskValue){
+            const objTask = {
+                listId: list.id,
+                text: taskValue,
+                attitude: activeLink
+            }
+            dispatch(postNewTask(objTask, toggleVisibility))
         }
-        setIsSending(true)
-        axios.post('http://localhost:3001/tasks', objTask).then(({data}) => {
-            onAddTask(data)
-            toggleVisibility()
-        }).catch(() => alert('Ошибка при добавлении задачи'))
-            .finally(() => setIsSending(false))
     }
     return (
         <div className="tasks__form">
@@ -35,7 +33,7 @@ const AddTaskForm = ({list, onAddTask}) => {
                                value={taskValue}
                                onChange={(e)=>setTaskValue(e.target.value)}
                                placeholder="Текст задачи"/>
-                        <button disabled={isSending} onClick={addTask} className="button">{isSending ? 'Добавление' : 'Добавить задачу'}</button>
+                        <button disabled={isLoading} onClick={addTask} className="button">{isLoading ? 'Добавление' : 'Добавить задачу'}</button>
                         <button onClick={toggleVisibility} className="button button__gray">Отмена</button>
                     </div>
                     : <div onClick={toggleVisibility} className="tasks__form-new">

@@ -6,8 +6,8 @@ const Badge = ({color, onClick, selectedColor, id}) => {
     return (
         <i onClick={onClick}
            id={id}
+           style={{backgroundColor: `${color}`}}
            className={classNames('badge',
-               {[`badge--${color}`] : color},
                {'active': selectedColor === id})}> </i>
     );
 };
