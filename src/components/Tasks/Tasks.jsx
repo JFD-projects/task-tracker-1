@@ -5,13 +5,14 @@ import AddTaskForm from "./addTaskForm";
 import Task from "./Task";
 import {Link} from "react-router-dom";
 import {linksTasks} from "../constants/constants";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {editListName} from "../../redux/reducers/listsReducer";
 
 const Tasks = ({list, tasks, withoutEmpty}) => {
     const dispatch = useDispatch()
     const [activeLink, setActiveLink] = useState('plan_tasks')
     const listView = (tasks ? tasks : list.tasks).filter(task => task.attitude === activeLink)
+    const isLoadingEditList = useSelector(state => state.lists.isLoading.editNameList)
 
     const editTitle = () => {
         const newTitle = window.prompt('Название списка', list.name)
@@ -19,12 +20,17 @@ const Tasks = ({list, tasks, withoutEmpty}) => {
            dispatch(editListName(list.id, newTitle))
         }
     }
+    const valueTasks = (link) => {
+        const length = (tasks ? tasks : list.tasks).filter(t=> t.attitude === link.id).length
 
+        return length === 0 ? "" : <i className="badge_number"><span>{length}</span></i>
+
+    }
     return (
         <div className="tasks">
             <Link to={`/lists/${list.id}`}>
                 <h2 style={{color: list?.color?.hex}} className="tasks__title">{list.name}
-                    <img onClick={editTitle} src={editImg} alt="edit"/>
+                        <img onClick={isLoadingEditList? null :editTitle} src={editImg} alt="edit"/>
                 </h2>
             </Link>
             <div className="tasks__nav">
@@ -32,7 +38,9 @@ const Tasks = ({list, tasks, withoutEmpty}) => {
                     {linksTasks.map(link => (
                         <li className={activeLink === link.id ? "active" : null}
                             onClick={()=>setActiveLink(link.id)}
-                            key={link.id}>{link.name}</li>
+                            key={link.id}>{link.name}
+                            {valueTasks(link)}
+                            </li>
                     ))}
 
                 </ul>

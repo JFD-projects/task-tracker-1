@@ -31,7 +31,25 @@
     &-tabs{
       display: flex;
       border-bottom: 1px solid #dbdbdb;
+      align-items: center;
+      .badge_number{
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: #C9D1D3;
+        span {
+          font-size: 8px;
+          font-weight: bold;
+        }
+      }
+
       li{
+        display: flex;
         padding: 10px;
         margin-top: 10px;
         cursor: pointer;

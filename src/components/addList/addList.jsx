@@ -61,7 +61,7 @@ const AddList = ({colors}) => {
                      alt="Close" className="add__list-popup-close-btn"/>
                 <input className="field"
                        type="text"
-                       value={nameCategory}
+                       value={nameCategory.substring(0, 20)}
                        onChange={({target})=> setNameCategory(target.value)}
                        placeholder="Название категории"/>
                 <div className="add__list-popup-colors">

@@ -9,11 +9,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {colors} from "./components/constants/colors"
 import {fetchTasks} from "./redux/reducers/tasksReducer";
 import {useMerger} from "./components/hooks/useMerger";
+import Loader from "react-loader-spinner";
 
 function App() {
     const dispatch = useDispatch()
     const activeList = useSelector(state => state.lists.activeList)
-    const isLoading = useSelector(state => state.lists.isLoading.fetchLists)
+    const isLoadingLists = useSelector(state => state.lists.isLoading.fetchLists)
+    const isLoadingTasks = useSelector(state => state.lists.isLoading.fetchTasks)
     const lists = useSelector(state => state.lists.lists)
     const tasks = useSelector(state => state.tasks.tasks)
 
@@ -48,8 +50,8 @@ function App() {
     }
     return (
         <div className="todo">
-            {isLoading
-                ? <h1>Loading</h1>
+            {isLoadingLists
+                ? <Loader className="todo__loader" type="Bars" color="#00BFFF" height={80} width={80} />
                 :
                 <>
                     <div className="todo__sidebar">
@@ -71,14 +73,17 @@ function App() {
                     <div className="todo__tasks">
                         <Switch>
                             <Route path="/lists/:id">
-                                {
-                                    !isLoading && activeList &&
+                                { isLoadingTasks ?
+                                    <Loader className="todo__loader" type="ThreeDots" color="#00BFFF" height={80} width={80} />
+                                    : activeList &&
                                     <Tasks tasks={tasks.filter(task => task.listId === activeList.id)}
                                            list={activeList}/>
                                 }
                             </Route>
                             <Route path="/">
-                                {
+                                { isLoadingTasks ?
+                                    <Loader className="todo__loader" type="ThreeDots" color="#00BFFF" height={80} width={80} />
+                                    :
                                     mergedData && mergedData.map(list => (
                                         <Tasks key={list.id}
                                                withoutEmpty

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import './list.scss';
 import classNames from "classnames";
 import Badge from "../common/Badge";
@@ -6,6 +6,7 @@ import removeImg from '../../assets/img/remove.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {deleteList} from "../../redux/reducers/listsReducer";
 import {deleteTask} from "../../redux/reducers/tasksReducer";
+import {submit} from "../utils/confirm";
 
 const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
     const dispatch = useDispatch()
@@ -15,13 +16,14 @@ const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
         onClickCategory(item)
     }
 
-    const removeList = (e,item) => {
+    const removeList = (e, item) => {
         e.stopPropagation()
-        if (window.confirm('Вы уверены?')) {
-            onClickCategory({id: 'all_tasks'})
-            dispatch(deleteTask(null, item.id))
-            dispatch(deleteList(item.id))
-        }
+        submit('Вы уверены?', confirmRemoveList.bind(this, item.id))
+    }
+    const confirmRemoveList = (id)=>{
+        onClickCategory({id: 'all_tasks'})
+        dispatch(deleteTask(null, id))
+        dispatch(deleteList(id))
     }
     return (
         <ul onClick={onClick} className="list">
@@ -38,8 +40,10 @@ const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
                         </i>
                         <span>{item.name}</span>
                         {item.tasks && item.tasks.length > 0 && <p>({item.tasks.length})</p>}
-                        {
-                            !isLoading && isRemovable && <img onClick={(e)=>removeList(e,item)} className="list__remove-icon" src={removeImg} alt="Remove category"/>
+                        {isRemovable &&
+                        <img onClick={isLoading ? null : (e) => removeList(e, item)} className="list__remove-icon"
+                             src={removeImg}
+                             alt="Remove category"/>
                         }
                     </li>
                 ))

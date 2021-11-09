@@ -24,6 +24,15 @@
       "name": "ФИЧИ",
       "colorId": 6,
       "id": 5
+    },
+    {
+      "name": "132132",
+      "colorId": 1,
+      "color": {
+        "id": 1,
+        "hex": "#6c757d"
+      },
+      "id": 6
     }
   ],
   "tasks": [
@@ -49,7 +58,7 @@
       "id": 15,
       "listId": 3,
       "text": "50 Projects In 50 Days - HTML, CSS & JavaScript",
-      "attitude": "plan_tasks"
+      "attitude": "process_tasks"
     },
     {
       "id": 16,
@@ -132,7 +141,7 @@
     {
       "listId": 5,
       "text": "Loader",
-      "attitude": "plan_tasks",
+      "attitude": "ready_tasks",
       "id": 32
     },
     {
@@ -156,13 +165,13 @@
     {
       "listId": 5,
       "text": "удаление задач при удалении списка",
-      "attitude": "process_tasks",
+      "attitude": "ready_tasks",
       "id": 36
     },
     {
       "listId": 5,
       "text": "количество задач в подкатегориях",
-      "attitude": "plan_tasks",
+      "attitude": "ready_tasks",
       "id": 37
     },
     {
@@ -170,6 +179,24 @@
       "text": "not found при изменении query номера листа",
       "attitude": "ready_tasks",
       "id": 41
+    },
+    {
+      "listId": 5,
+      "text": "Обработка \"isLoading\"",
+      "attitude": "ready_tasks",
+      "id": 42
+    },
+    {
+      "listId": 1,
+      "text": "Убрать диван",
+      "attitude": "process_tasks",
+      "id": 43
+    },
+    {
+      "listId": 6,
+      "text": "12312",
+      "attitude": "plan_tasks",
+      "id": 44
     }
   ],
   "colors": [

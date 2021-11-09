@@ -1,12 +1,13 @@
 import axios from "axios";
 
+
 export const listsAPI = {
     getLists() {
         return axios.get('http://localhost:3001/lists?_expand=color')
             .then(res => res.data)
     },
     addList(newList) {
-        return axios.post('http://localhost:3001/lists', newList).then(res => res.data)
+        return axios.post('http://localhost:3001/lists/', newList).then(res => res.data)
     },
     removeList(id) {
         return axios.delete('http://localhost:3001/lists/' + id).then(res => res)
@@ -21,15 +22,15 @@ export const listsAPI = {
 
 export const tasksAPI = {
     getTasks() {
-        return axios.get('http://localhost:3001/tasks').then(res => res.data)
+        return axios.get('http://localhost:3001/tasks/').then(res => res.data)
     },
     addTask(objTask){
-        return axios.post('http://localhost:3001/tasks', objTask).then(res => res.data)
+        return axios.post('http://localhost:3001/tasks/', objTask).then(res => res.data)
     },
     removeTask(taskId, listId) {
         if (listId) {
-            return axios.delete('http://localhost:3001/tasks/', {params: {listId: listId}})
-                .then(res => res)
+            /*return axios.post('http://localhost:3001/tasks/', ...newTasks).then(res => res.data)*/
+            return axios.delete('http://localhost:3001/tasks/', {params: {listId: listId}}).then(res => res)
         } else {
             return axios.delete('http://localhost:3001/tasks/' + taskId).then(res => res)
 
