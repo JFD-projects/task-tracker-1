@@ -5,6 +5,8 @@
   text-decoration: none;
 }
 .tasks__title {
+  display: flex;
+  position: relative;
   font-family: Montserrat, serif;
   font-size: 32px;
   font-weight: bold;
@@ -27,7 +29,7 @@
 .tasks__nav-tabs {
   display: flex;
   border-bottom: 1px solid #dbdbdb;
-  align-items: center;
+  align-items: flex-end;
 }
 .tasks__nav-tabs .badge_number {
   margin-left: 10px;
@@ -63,11 +65,11 @@
 }
 .tasks__items {
   margin-top: 30px;
+  position: relative;
 }
 .tasks__items h2 {
-  position: absolute;
+  position: relative;
   top: 50%;
-  left: 50%;
   text-align: center;
   font-family: Montserrat, serif;
   font-style: normal;

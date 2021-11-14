@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import imgList from "./assets/img/list.svg";
+import imgChart from "./assets/img/line-chart.svg";
 import {AddCategory, List, Tasks} from "./components";
 import {Route, Switch, useHistory, useLocation} from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +11,7 @@ import {colors} from "./components/constants/colors"
 import {fetchTasks} from "./redux/reducers/tasksReducer";
 import {useMerger} from "./components/hooks/useMerger";
 import Loader from "react-loader-spinner";
+import Statistics from "./components/statistics/statistics";
 
 function App() {
     const dispatch = useDispatch()
@@ -23,42 +25,42 @@ function App() {
     const history = useHistory()
 
     const mergedData = useMerger(lists, tasks, "tasks", "listId", "id")
-
     useEffect(() => {
         dispatch(fetchLists())
         dispatch(fetchTasks())
         dispatch(listsActions.setActiveList({id: 'all_tasks'}))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        const listId = location.pathname.split('lists/')[1];
-        if (listId) {
-            const list = lists.find(list => list.id === Number(listId));
-            list ? dispatch(listsActions.setActiveList(list))
-                : history.push(`/`)
-        } else {
+        const page = location.pathname.split("/")
+        if (page[1] === 'statistics'){
+            dispatch(listsActions.setActiveList({id: 'statistics'}))
+            return
+        }
+        if (page[1] === 'lists'){
+            const list = lists.find(list => list.id === +page[2]);
+            list ? dispatch(listsActions.setActiveList(list)) : history.push(`/`)
+        }else {
             dispatch(listsActions.setActiveList({id: 'all_tasks'}))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lists,location.pathname])
 
     const onChangeList = (item) => {
-        if (item.id === 'all_tasks'){
-            history.push(`/`)
-        } else {
-            history.push(`/lists/${item.id}`)
-        }
+        if (item.id === 'all_tasks') history.push(`/`)
+        if (item.id === 'statistics') history.push(`/statistics`)
+        else history.push(`/lists/${item.id}`)
     }
     return (
         <div className="todo">
-            {isLoadingLists
-                ? <Loader className="todo__loader" type="Bars" color="#00BFFF" height={80} width={80} />
-                :
+            {isLoadingLists ? <Loader className="todo__loader" type="Bars" color="#00BFFF" height={80} width={80} /> :
                 <>
                     <div className="todo__sidebar">
                         <List items={[
                             {
                                 id: 'all_tasks',
-                                name: 'Все задачи',
+                                name: 'Все списки',
                                 icon: <img src={imgList} alt="List icon"/>
                             }]}
                               activeList={activeList}
@@ -69,6 +71,15 @@ function App() {
                               activeList={activeList}
                               isRemovable/>
                         <AddCategory colors={colors}/>
+                        <List items={[
+                            {
+                                id: 'statistics',
+                                name: 'Статистика задач',
+                                icon: <img src={imgChart} alt="Chart icon"/>
+                            }]}
+                              activeList={activeList}
+                              onClickCategory={onChangeList}
+                        />
                     </div>
                     <div className="todo__tasks">
                         <Switch>
@@ -77,8 +88,12 @@ function App() {
                                     <Loader className="todo__loader" type="ThreeDots" color="#00BFFF" height={80} width={80} />
                                     : activeList &&
                                     <Tasks tasks={tasks.filter(task => task.listId === activeList.id)}
+                                           withNavigate
                                            list={activeList}/>
                                 }
+                            </Route>
+                            <Route path="/statistics">
+                                <Statistics info={mergedData}/>
                             </Route>
                             <Route path="/">
                                 { isLoadingTasks ?
@@ -86,7 +101,6 @@ function App() {
                                     :
                                     mergedData && mergedData.map(list => (
                                         <Tasks key={list.id}
-                                               withoutEmpty
                                                list={list}/>
                                     ))
                                 }

@@ -1,5 +1,5 @@
-import {listsAPI} from "../../api/reduxAPI";
 import {toast} from "react-toastify";
+import {listsService} from "../../services/list.service";
 
 const InitialState = {
     lists: [],
@@ -73,7 +73,7 @@ export const listsActions = {
 
 export const fetchLists = () => (dispatch) => {
     dispatch(listsActions.setLoading(true, "fetchLists"))
-    listsAPI.getLists().then(data => {
+    listsService.getLists().then(data => {
         dispatch(listsActions.addLists(data))
     }).catch(() => toast.error('Ошибка при загрузке списков'))
         .finally(() => dispatch(listsActions.setLoading(false, "fetchLists")))
@@ -81,7 +81,7 @@ export const fetchLists = () => (dispatch) => {
 
 export const postNewList = (newList, callback) => (dispatch) => {
     dispatch(listsActions.setLoading(true, "addList"))
-    listsAPI.addList(newList).then(data => {
+    listsService.addList(newList).then(data => {
         dispatch(listsActions.addNewList(data))
     }).catch(() => {
         toast.error('Ошибка при добавлении списка')
@@ -93,11 +93,12 @@ export const postNewList = (newList, callback) => (dispatch) => {
             callback()
         })
 }
-export const editListName = (id, name) => (dispatch) => {
+export const editListName = (id, name, callback) => (dispatch) => {
     dispatch(listsActions.setLoading(true, "editNameList"))
-    listsAPI.editTitle(id, name).then((data) => {
+    listsService.editTitle(id, name).then((data) => {
         if(data === 200){
             dispatch(listsActions.editNameList(id, name))
+            callback()
         }
     }).catch(() => {
         toast.error('Ошибка при измении имени списка')
@@ -110,7 +111,7 @@ export const editListName = (id, name) => (dispatch) => {
 
 export const deleteList = (id) => (dispatch) => {
     dispatch(listsActions.setLoading(true, "removeList"))
-    listsAPI.removeList(id).then((res) => {
+    listsService.removeList(id).then((res) => {
         if (res.status === 200) {
             dispatch(listsActions.removeList(id))
         }

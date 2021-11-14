@@ -1,5 +1,5 @@
 import {confirmAlert} from "react-confirm-alert";
-import "./confirm.scss"
+import "../../css/confirm.scss"
 
 export const submit = (title, callback, params) => {
     const paramsFn = () => {

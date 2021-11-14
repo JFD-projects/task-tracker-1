@@ -1,5 +1,5 @@
 import {toast} from "react-toastify";
-import {tasksAPI} from "../../api/reduxAPI";
+import {tasksService} from "../../services/task.service";
 
 const InitialState = {
     tasks: [],
@@ -23,11 +23,10 @@ const tasksReducer = (state = InitialState, action) => {
         }
         case "REMOVE_TASK": {
             let newTasks
-            if (action.payload.listId){
-                newTasks = state.tasks.filter(task => task.listId !== action.payload.listId)
+            if (action.payload.newTasks){
+                newTasks = action.payload.newTasks
             } else{
                 newTasks = state.tasks.filter(task => task.id !== action.payload.id)
-
             }
             return {
                 ...state,
@@ -74,14 +73,14 @@ export const tasksActions = {
     addTasks: (data) => ({type: "FETCH_TASKS", payload: data}),
     setLoading: (val, field) => ({type: "SET_LOADING", payload: {val, field}}),
     addNewTask: (task) => ({type: "ADD_NEW_TASK", payload: task}),
-    removeTask: (id, listId) => ({type: "REMOVE_TASK", payload: {id,listId}}),
+    removeTask: (id, newTasks) => ({type: "REMOVE_TASK", payload: {id,newTasks}}),
     editNameTask: (id, text) => ({type: "EDIT_TASK", payload: {id, text}}),
     editAttitudeTask: (id, attitude) => ({type: "EDIT_ATTITUDE_TASK", payload: {id, attitude}}),
 }
 
 export const fetchTasks = () => (dispatch) => {
     dispatch(tasksActions.setLoading(true, "fetchTasks"))
-    tasksAPI.getTasks().then(data => {
+    tasksService.getTasks().then(data => {
         dispatch(tasksActions.addTasks(data))
     }).catch(() => toast.error('Ошибка при загрузке задач'))
         .finally(() => dispatch(tasksActions.setLoading(false, "fetchTasks")))
@@ -89,7 +88,7 @@ export const fetchTasks = () => (dispatch) => {
 
 export const postNewTask = (obj, callback) => (dispatch) => {
     dispatch(tasksActions.setLoading(true, "addTask"))
-    tasksAPI.addTask(obj).then(data => {
+    tasksService.addTask(obj).then(data => {
         dispatch(tasksActions.addNewTask(data))
     }).catch(() => {
         toast.error('Ошибка при добавлении задачи')
@@ -103,7 +102,7 @@ export const postNewTask = (obj, callback) => (dispatch) => {
 }
 export const editTaskName = (id, text) => (dispatch) => {
     dispatch(tasksActions.setLoading(true, "editTask"))
-    tasksAPI.editTask(id, text).then((data) => {
+    tasksService.editTask(id, text).then((data) => {
         if(data === 200){
             dispatch(tasksActions.editNameTask(id, text))
         }
@@ -117,7 +116,7 @@ export const editTaskName = (id, text) => (dispatch) => {
 }
 export const editTaskAttitude = (id, attitude) => (dispatch) => {
     dispatch(tasksActions.setLoading(true, "editAttitude"))
-    tasksAPI.editAttitudeTask(id, attitude).then((data) => {
+    tasksService.editAttitudeTask(id, attitude).then((data) => {
         if(data === 200){
             dispatch(tasksActions.editAttitudeTask(id, attitude))
         }
@@ -129,10 +128,11 @@ export const editTaskAttitude = (id, attitude) => (dispatch) => {
             toast.info('Статус задачи обновлен')
         })
 }
-export const deleteTask = (id, listId) => (dispatch) => {
+export const deleteTask = (id, newTasks) => (dispatch) => {
     dispatch(tasksActions.setLoading(true, "removeTask"))
-    tasksAPI.removeTask(id, listId).then(() => {
-        dispatch(tasksActions.removeTask(id, listId))
+    newTasks && dispatch(tasksActions.removeTask(id, newTasks))
+    tasksService.removeTask(id, newTasks).then(() => {
+        dispatch(tasksActions.removeTask(id, newTasks))
     }).catch(() => {
         id && toast.error('Ошибка при удалении задачи')
     })

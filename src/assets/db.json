@@ -26,7 +26,7 @@
       "id": 5
     },
     {
-      "name": "132132",
+      "name": "1fdssfd",
       "colorId": 1,
       "color": {
         "id": 1,
@@ -41,12 +41,6 @@
       "listId": 1,
       "text": "Убраться к приходу гостей (пылесос, протереть пыль, помыть посуду)",
       "attitude": "plan_tasks"
-    },
-    {
-      "id": 8,
-      "listId": 1,
-      "text": "Приготовить ужин",
-      "attitude": "process_tasks"
     },
     {
       "id": 10,
@@ -92,18 +86,6 @@
     },
     {
       "listId": 5,
-      "text": "Темная тема?",
-      "attitude": "plan_tasks",
-      "id": 24
-    },
-    {
-      "listId": 5,
-      "text": "Редакс",
-      "attitude": "ready_tasks",
-      "id": 25
-    },
-    {
-      "listId": 5,
       "text": "Страница одной задачи",
       "attitude": "plan_tasks",
       "id": 26
@@ -128,51 +110,9 @@
     },
     {
       "listId": 5,
-      "text": "Статистика с графиками",
-      "attitude": "plan_tasks",
-      "id": 30
-    },
-    {
-      "listId": 5,
-      "text": "Разделение на задачи (3 типа)",
-      "attitude": "ready_tasks",
-      "id": 31
-    },
-    {
-      "listId": 5,
-      "text": "Loader",
-      "attitude": "ready_tasks",
-      "id": 32
-    },
-    {
-      "listId": 5,
-      "text": "Базовые компоненты (input, button и т. д.) ",
-      "attitude": "plan_tasks",
-      "id": 33
-    },
-    {
-      "listId": 5,
-      "text": "Календарь задач",
-      "attitude": "plan_tasks",
-      "id": 34
-    },
-    {
-      "listId": 5,
-      "text": "Драг энд дроп",
-      "attitude": "plan_tasks",
-      "id": 35
-    },
-    {
-      "listId": 5,
       "text": "удаление задач при удалении списка",
       "attitude": "ready_tasks",
       "id": 36
-    },
-    {
-      "listId": 5,
-      "text": "количество задач в подкатегориях",
-      "attitude": "ready_tasks",
-      "id": 37
     },
     {
       "listId": 5,
@@ -181,22 +121,34 @@
       "id": 41
     },
     {
-      "listId": 5,
-      "text": "Обработка \"isLoading\"",
-      "attitude": "ready_tasks",
-      "id": 42
-    },
-    {
       "listId": 1,
       "text": "Убрать диван",
-      "attitude": "process_tasks",
+      "attitude": "plan_tasks",
       "id": 43
     },
     {
-      "listId": 6,
-      "text": "12312",
+      "listId": 2,
+      "text": "Замена колес",
+      "attitude": "process_tasks",
+      "id": 45
+    },
+    {
+      "listId": 3,
+      "text": "Курс \"Веб-разработчик\"",
       "attitude": "plan_tasks",
-      "id": 44
+      "id": 46
+    },
+    {
+      "listId": 4,
+      "text": "Яндекс забрать фильтр",
+      "attitude": "ready_tasks",
+      "id": 47
+    },
+    {
+      "listId": 4,
+      "text": "Отправить на Почте России",
+      "attitude": "process_tasks",
+      "id": 48
     }
   ],
   "colors": [

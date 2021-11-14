@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import './list.scss';
+import React from "react";
+import '../../css/list.scss';
 import classNames from "classnames";
 import Badge from "../common/Badge";
 import removeImg from '../../assets/img/remove.svg'
@@ -11,6 +11,7 @@ import {submit} from "../utils/confirm";
 const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
     const dispatch = useDispatch()
     const isLoading = useSelector(state => state.lists.isLoading.removeList)
+    const tasks = useSelector(state => state.tasks.tasks)
 
     const onClickItem = (item) => {
         onClickCategory(item)
@@ -21,8 +22,9 @@ const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
         submit('Вы уверены?', confirmRemoveList.bind(this, item.id))
     }
     const confirmRemoveList = (id)=>{
+        const newTasks = tasks.filter(task => task.listId !== id)
         onClickCategory({id: 'all_tasks'})
-        dispatch(deleteTask(null, id))
+        newTasks && dispatch(deleteTask(null, newTasks))
         dispatch(deleteList(id))
     }
     return (

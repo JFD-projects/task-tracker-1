@@ -1,0 +1,46 @@
+.badge{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 30px;
+}
+
+.button{
+  background: #4dd599;
+  border-radius: 4px;
+  color: white;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+  &:hover{
+    background: darken(#4dd599, 6%);
+  }
+  &:active{
+    background: darken(#4dd599, 10%);
+  }
+  &:disabled{
+    background: #a1a1a1;
+  }
+  &__gray{
+    background: #d9d8d8;
+    &:hover{
+      background: darken(#d9d8d8, 6%);
+    }
+    &:active{
+      background: darken(#d9d8d8, 10%);
+    }
+  }
+}
+.field {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  &:focus {
+    border-color: #dbdbdb;
+  }
+}
