@@ -8,10 +8,10 @@ import store from "./redux/redux-store";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-            <App/>
-            </Provider>
-        </BrowserRouter>,
-    document.getElementById('root')
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
 );

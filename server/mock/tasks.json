@@ -1,0 +1,116 @@
+[
+  {
+    "id": 6,
+    "listId": 1,
+    "text": "Убраться к приходу гостей (пылесос, протереть пыль, помыть посуду)",
+    "attitude": "plan_tasks"
+  },
+  {
+    "id": 10,
+    "listId": 2,
+    "text": "Заменить фильтра (воздушный, салон)",
+    "attitude": "plan_tasks"
+  },
+  {
+    "id": 15,
+    "listId": 3,
+    "text": "50 Projects In 50 Days - HTML, CSS & JavaScript",
+    "attitude": "process_tasks"
+  },
+  {
+    "id": 16,
+    "listId": 3,
+    "text": "[Udemy] CSS - The Complete Guide 2021 (incl. Flexbox, Grid & Sass)",
+    "attitude": "ready_tasks"
+  },
+  {
+    "id": 17,
+    "listId": 3,
+    "text": "[Udemy] React с нуля для начинающих 3 проекта в портфолио (2020)",
+    "attitude": "ready_tasks"
+  },
+  {
+    "id": 19,
+    "listId": 1,
+    "text": "Разобраться с протекающим краном",
+    "attitude": "ready_tasks"
+  },
+  {
+    "id": 21,
+    "listId": 2,
+    "text": "Провести ТО",
+    "attitude": "ready_tasks"
+  },
+  {
+    "listId": 4,
+    "text": "Забрать заказ в Озоне до понедельника",
+    "attitude": "plan_tasks",
+    "id": 23
+  },
+  {
+    "listId": 5,
+    "text": "Страница одной задачи",
+    "attitude": "plan_tasks",
+    "id": 26
+  },
+  {
+    "listId": 5,
+    "text": "Логин",
+    "attitude": "plan_tasks",
+    "id": 27
+  },
+  {
+    "listId": 5,
+    "text": "Кастомный хук?",
+    "attitude": "ready_tasks",
+    "id": 28
+  },
+  {
+    "listId": 5,
+    "text": "Регистрация",
+    "attitude": "plan_tasks",
+    "id": 29
+  },
+  {
+    "listId": 5,
+    "text": "удаление задач при удалении списка",
+    "attitude": "ready_tasks",
+    "id": 36
+  },
+  {
+    "listId": 5,
+    "text": "not found при изменении query номера листа",
+    "attitude": "ready_tasks",
+    "id": 41
+  },
+  {
+    "listId": 1,
+    "text": "Убрать диван",
+    "attitude": "plan_tasks",
+    "id": 43
+  },
+  {
+    "listId": 2,
+    "text": "Замена колес",
+    "attitude": "process_tasks",
+    "id": 45
+  },
+  {
+    "listId": 3,
+    "text": "Курс \"Веб-разработчик\"",
+    "attitude": "plan_tasks",
+    "id": 46
+  },
+  {
+    "listId": 4,
+    "text": "Яндекс забрать фильтр",
+    "attitude": "ready_tasks",
+    "id": 47
+  },
+  {
+    "listId": 4,
+    "text": "Отправить на Почте России",
+    "attitude": "process_tasks",
+    "id": 48
+  }
+]

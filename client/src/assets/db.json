@@ -2,36 +2,38 @@
   "lists": [
     {
       "id": 1,
+      "userId": 77,
       "name": "Домашние",
-      "colorId": 5
+      "color": "#20c997"
     },
     {
       "id": 2,
+      "userId": 77,
       "name": "Авто",
-      "colorId": 2
+      "color": "#28a745"
     },
     {
       "id": 3,
+      "userId": 77,
       "name": "По курсам",
-      "colorId": 7
+      "color": "#343a40"
     },
     {
+      "id": 4,
+      "userId": 77,
       "name": "Заказы",
-      "colorId": 8,
-      "id": 4
+      "color": "#dc3545"
     },
     {
+      "id": 5,
+      "userId": 77,
       "name": "ФИЧИ",
-      "colorId": 6,
-      "id": 5
+      "color": "#6f42c1"
     },
     {
-      "name": "1fdssfd",
-      "colorId": 1,
-      "color": {
-        "id": 1,
-        "hex": "#6c757d"
-      },
+      "name": "22",
+      "userId": 77,
+      "color": "#28a745",
       "id": 6
     }
   ],
@@ -149,40 +151,6 @@
       "text": "Отправить на Почте России",
       "attitude": "process_tasks",
       "id": 48
-    }
-  ],
-  "colors": [
-    {
-      "id": 1,
-      "hex": "#6c757d"
-    },
-    {
-      "id": 2,
-      "hex": "#28a745"
-    },
-    {
-      "id": 3,
-      "hex": "#007bff"
-    },
-    {
-      "id": 4,
-      "hex": "#e83e8c"
-    },
-    {
-      "id": 5,
-      "hex": "#20c997"
-    },
-    {
-      "id": 6,
-      "hex": "#6f42c1"
-    },
-    {
-      "id": 7,
-      "hex": "#343a40"
-    },
-    {
-      "id": 8,
-      "hex": "#dc3545"
     }
   ]
 }

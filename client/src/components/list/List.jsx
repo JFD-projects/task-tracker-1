@@ -37,7 +37,7 @@ const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
                         <i>
                             {
                                 item.icon ? (item.icon) :
-                                    (<Badge color={item.color.hex}/>)
+                                    (<Badge color={item.color}/>)
                             }
                         </i>
                         <span>{item.name}</span>

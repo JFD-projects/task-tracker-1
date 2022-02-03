@@ -1,0 +1,4 @@
+{
+  "port": 8080,
+  "mongoUri": "mongodb+srv://VladAstakhov:Subbufer21@cluster0.ofpvz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}

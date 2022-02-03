@@ -17,7 +17,7 @@ const Tasks = ({list, tasks, withNavigate}) => {
     return (
         <div className="tasks">
             <Link to={`/lists/${list.id}`}>
-                <h2 style={{color: list?.color?.hex}} className="tasks__title">{list.name}
+                <h2 style={{color: list?.color}} className="tasks__title">{list.name}
                     {withNavigate && <EditListForm list={list}/>}</h2>
             </Link>
             <div className="tasks__nav">

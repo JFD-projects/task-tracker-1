@@ -33,8 +33,8 @@ const AddListForm = ({colors}) => {
         const color = colors.find(c => c.id === selectedColor)
         const newList = {
             name: form.categoryName,
-            colorId: selectedColor,
-            color: color
+            userId: 77,
+            color: color.hex
         }
         dispatch(postNewList(newList, onClose))
     }

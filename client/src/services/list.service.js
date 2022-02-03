@@ -4,7 +4,7 @@ const urlTasksEndpoint = `lists/`
 
 export const listsService = {
     async getLists() {
-        const {data} = await httpService.get(urlTasksEndpoint + '?_expand=color')
+        const {data} = await httpService.get(urlTasksEndpoint)
         return data
     },
     async addList(newList) {
