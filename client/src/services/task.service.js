@@ -19,16 +19,8 @@ export const tasksService = {
             return await httpService.delete(urlTasksEndpoint + taskId)
         }
     },
-    async editTask (taskId, newTitle) {
-        const {status} = await httpService.patch(urlTasksEndpoint + taskId, {
-            text: newTitle
-        })
+    async editTask (taskId, obj) {
+        const {status} = await httpService.patch(urlTasksEndpoint + taskId, obj)
         return status
     },
-    async editAttitudeTask(taskId, attitude){
-        const {status} = await httpService.patch(urlTasksEndpoint + taskId, {
-            attitude
-        })
-        return status
-    }
 }

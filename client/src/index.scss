@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -8,7 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.todo{
+.todo {
   display: flex;
   position: absolute;
   left: 50%;
@@ -19,12 +19,14 @@
   box-shadow: 1px 2px 20px #f3f3f3;
   border-radius: 10px;
   font-size: 14px;
-  &__loader{
+
+  &__loader {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
+
   &__sidebar {
     background-color: #f4f6f8;
     border-right: 1px solid #f1f1f1;
@@ -33,7 +35,8 @@
     padding: 60px 20px;
     background-image: url('assets/img/pattern.png');
   }
-  &__tasks{
+
+  &__tasks {
     flex: 1;
     padding: 60px;
     overflow: auto;

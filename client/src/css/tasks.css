@@ -14,6 +14,7 @@
   color: #64C4ED;
   padding-bottom: 20px;
   border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 20px;
 }
 .tasks__title:hover img {
   opacity: 0.2;
@@ -144,8 +145,14 @@
   font-size: 16px;
   margin-left: 19px;
 }
+.tasks__form-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
 .tasks__form-block button {
-  margin-top: 15px;
+  width: 200px;
   margin-right: 10px;
 }
 

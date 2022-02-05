@@ -35,7 +35,7 @@
 
 .field {
   width: 100%;
-  background: #ffffff;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #efefef;
   box-sizing: border-box;
   border-radius: 4px;
@@ -44,6 +44,36 @@
 }
 .field:focus {
   border-color: #dbdbdb;
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.select {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font-size: 14px;
+  width: 200px;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  color: black;
+  border-radius: 4px;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.select option {
+  color: white;
+  background-color: #4dd599;
+}
+.select:focus {
+  outline: none;
+}
+.select::-ms-expand {
+  display: none;
 }
 
 /*# sourceMappingURL=common.css.map */

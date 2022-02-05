@@ -1,12 +1,14 @@
-.tasks{
+.tasks {
 
-  &:not(:last-of-type){
+  &:not(:last-of-type) {
     margin-bottom: 40px;
   }
-  a{
+
+  a {
     text-decoration: none;
   }
-  &__title{
+
+  &__title {
     display: flex;
     position: relative;
     font-family: Montserrat, serif;
@@ -16,26 +18,32 @@
     color: #64C4ED;
     padding-bottom: 20px;
     border-bottom: 1px solid #dbdbdb;
-    &:hover{
-      img{
+    margin-bottom: 20px;
+
+    &:hover {
+      img {
         opacity: 0.2;
       }
     }
   }
-  img{
+
+  img {
     cursor: pointer;
     opacity: 0;
     margin-left: 15px;
-    &:hover{
+
+    &:hover {
       opacity: 1;
     }
   }
-  &__nav{
-    &-tabs{
+
+  &__nav {
+    &-tabs {
       display: flex;
       border-bottom: 1px solid #dbdbdb;
       align-items: flex-end;
-      .badge_number{
+
+      .badge_number {
         margin-left: 10px;
         display: flex;
         justify-content: center;
@@ -45,35 +53,40 @@
         height: 18px;
         border-radius: 50%;
         background-color: #C9D1D3;
+
         span {
           font-size: 8px;
           font-weight: bold;
         }
       }
 
-      li{
+      li {
         display: flex;
         padding: 10px;
         margin-top: 10px;
         cursor: pointer;
-        margin-bottom: -1px ;
+        margin-bottom: -1px;
         border: 1px solid transparent;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+
         &:hover, {
           border: 1px solid #ecebeb;
         }
-        &.active{
+
+        &.active {
           border: 1px solid #dbdbdb;
           border-bottom: 1px solid #fff;
         }
       }
     }
   }
-  &__items{
+
+  &__items {
     margin-top: 30px;
     position: relative;
-    h2{
+
+    h2 {
       position: relative;
       top: 50%;
       text-align: center;
@@ -86,18 +99,22 @@
 
       color: #C9D1D3;
     }
-    &-row{
+
+    &-row {
       display: flex;
       align-items: center;
       margin-bottom: 15px;
-      &:hover &-actions{
-        opacity:0.4;
+
+      &:hover &-actions {
+        opacity: 0.4;
       }
-      &-actions{
+
+      &-actions {
         display: flex;
         opacity: 0;
         transition: opacity 0.15s ease-in-out;
-        div{
+
+        div {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -107,19 +124,23 @@
           border-radius: 6px;
           margin-left: 5px;
           cursor: pointer;
-          &:hover{
+
+          &:hover {
             background-color: darken(#f4f6f8, 2%);
+
             svg {
               opacity: 0.9;
             }
           }
-          svg{
+
+          svg {
             opacity: 0.4;
             transition: opacity 0.15s ease-in-out;
           }
         }
       }
-      input{
+
+      input {
         margin-left: 15px;
         border: 0;
         font-size: 16px;
@@ -137,38 +158,50 @@
       cursor: pointer;
       opacity: 0.4;
       transition: opacity 0.2s ease-in-out;
+
       &:hover {
-      opacity: 0.7;
-    }
+        opacity: 0.7;
+      }
+
       img {
         width: 16px;
         height: 16px;
         opacity: 0.7;
         margin-left: 5px;
+
         &:hover {
           opacity: 0.7
         }
       }
-      span{
+
+      span {
         font-size: 16px;
         margin-left: 19px;
       }
     }
-    &-block{
-      button{
-        margin-top: 15px;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 400px;
+
+      button {
+        width: 200px;
         margin-right: 10px;
       }
     }
   }
 }
-.tasks__items-row-attitude{
+
+.tasks__items-row-attitude {
   display: flex;
-  input{
+
+  input {
     display: none;
   }
 
-  label{
+  label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,9 +210,11 @@
     border-radius: 30px;
     width: 20px;
     height: 20px;
-    &:not(:last-child){
+
+    &:not(:last-child) {
       margin-right: 5px;
     }
+
     img {
       position: relative;
       right: 7px;
@@ -188,17 +223,20 @@
     &:hover {
       background-color: #f2f2f2;
       transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+
       img {
         transition: opacity 0.25s ease-in-out, filter 0.5s ease-in-out;
         opacity: 0.4;
         filter: invert(0);
       }
     }
-    &:active{
+
+    &:active {
       background-color: #4dd599;
       border-color: #4dd599;
       transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
-      img{
+
+      img {
         transition: opacity 0.25s ease-in-out;
         opacity: 1;
         filter: invert(1);

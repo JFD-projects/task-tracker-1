@@ -21,7 +21,6 @@ body.react-confirm-alert-body-element {
   display: -o-flex;
   display: flex;
   justify-content: center;
-  -ms-align-items: center;
   align-items: center;
   opacity: 0;
   -webkit-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;

@@ -6,12 +6,12 @@ import thunk from "redux-thunk";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const rootReducer = combineReducers({
-    lists: listsReducer,
-    tasks: tasksReducer
+  lists: listsReducer,
+  tasks: tasksReducer
 })
 const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(thunk)))
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk)))
 
 window.store = store
 

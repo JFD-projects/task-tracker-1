@@ -6,31 +6,36 @@
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.65);
     border-radius: 10px;
     padding: 12px;
-    position: relative;
+    position: absolute;
+    z-index: 2;
 
     .button {
       width: 100%;
       margin-top: 20px;
     }
-    &-colors{
+
+    &-colors {
       display: flex;
       justify-content: space-between;
       margin-top: 12px;
     }
-    &-close-btn{
+
+    &-close-btn {
       position: absolute;
       top: -8px;
       right: -8px;
       cursor: pointer;
     }
-    .badge{
+
+    .badge {
       width: 16px;
       height: 16px;
       position: static;
       cursor: pointer;
       border: 1px solid #ffffff;
+
       &:active,
-      &.active{
+      &.active {
         border: 1px solid #525252;
       }
     }

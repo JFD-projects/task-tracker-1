@@ -1,13 +1,18 @@
 import {useState} from "react";
 
 export const useForm = (initialState = {}) => {
-    const [form, setForm] = useState(initialState);
+  const [form, setForm] = useState(initialState);
+  const handleChange = (target) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }));
+  };
+  const changeAllForm = (fields) => {
+    fields.forEach(field => {
+      handleChange(field)
+    })
+  }
 
-    const handleChange = (target) => {
-        setForm((prevState) => ({
-            ...prevState,
-            [target.name]: target.value,
-        }));
-    };
-    return {handleChange, form}
+  return { changeAllForm, handleChange, form}
 }

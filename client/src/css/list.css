@@ -7,6 +7,12 @@
 .list__add-button:hover {
   opacity: 1;
 }
+.list__link {
+  text-decoration: none;
+}
+.list__link:active, .list__link:visited {
+  color: black;
+}
 .list li {
   display: flex;
   align-items: center;
@@ -42,7 +48,7 @@
 }
 .list li.active {
   background: #FFFFFF;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 .list li i {
   display: flex;
