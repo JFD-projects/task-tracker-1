@@ -8,14 +8,6 @@ const schema = new Schema({
   refreshToken: {
     type: String,
     required: true
-  },
-  accessToken: {
-    type: String,
-    required: true
-  },
-  expiresIn: {
-    type: Number,
-    required: true
   }
 }, {
   timestamps: true

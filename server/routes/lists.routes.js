@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     const list = await List.find()
     res.status(200).send(list)
   } catch (e) {
-    res.stats(500).json({
+    res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже"
     })
   }
