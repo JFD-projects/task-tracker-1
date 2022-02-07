@@ -15,7 +15,7 @@ const EditTask = () => {
   const lists = useSelector(state => state.lists.lists)
   const tasks = useSelector(state => state.tasks.tasks)
 
-  const options = lists.map(list => ({label: list.name, value: list.id}))
+  const options = lists.map(list => ({label: list.name, value: list._id}))
   const status = [
     {label: 'План', value: "plan_tasks"},
     {label: 'В работе', value: "process_tasks"},

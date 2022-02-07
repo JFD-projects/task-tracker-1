@@ -39,5 +39,31 @@
   padding: 60px;
   overflow: auto;
 }
+.todo__login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.todo__login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-width: 400px;
+  background-color: #f4f6f8;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  padding: 20px;
+}
+.todo__login-container h2 {
+  text-align: center;
+}
+
+.toggleForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
 /*# sourceMappingURL=index.css.map */

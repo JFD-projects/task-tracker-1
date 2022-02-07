@@ -1,14 +1,15 @@
 const express = require('express')
+const User = require("../models/User")
 const auth = require('../middleware/auth.middleware')
-const Task = require('../models/Task')
 const router = express.Router({mergeParams: true})
 
-router.get('/', auth, async (req, res) => {
+router.get('/:id', auth,  async (req, res) => {
   try {
-    const task = await Task.find()
-    res.status(200).send(task)
+    const {id} = req.params
+    const {name, email} = await User.findById(id)
+    res.send({name, email})
   } catch (e) {
-    res.status(500).json({
+    await res.status(500).json({
       message: "На сервере произошла ошибка. Попробуйте позже"
     })
   }

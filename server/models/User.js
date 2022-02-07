@@ -6,7 +6,6 @@ const schema = new Schema({
     type: String, required: true, unique: true
   },
   password: String,
-  image: String,
   lists: [{
     type: Schema.Types.ObjectId, ref: 'List'
   }]

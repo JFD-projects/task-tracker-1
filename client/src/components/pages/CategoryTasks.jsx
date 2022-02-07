@@ -12,7 +12,7 @@ const CategoryTasks = () => {
     isLoadingTasks ?
       <Loader className="todo__loader" type="ThreeDots" color="#00BFFF" height={80} width={80}/>
       : activeList &&
-      <Tasks tasks={tasks.filter(task => task.listId === activeList.id)}
+      <Tasks tasks={tasks.filter(task => task.listId === activeList._id)}
              withNavigate
              list={activeList}/>
 

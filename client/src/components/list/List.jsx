@@ -4,40 +4,40 @@ import classNames from "classnames";
 import Badge from "../common/Badge";
 import removeImg from '../../assets/img/remove.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {deleteList} from "../../redux/reducers/listsReducer";
+import {deleteList, listsActions} from "../../redux/reducers/listsReducer";
 import {deleteTask} from "../../redux/reducers/tasksReducer";
 import {submit} from "../utils/confirm";
-import {Link} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {getLink} from "../utils/getLink";
 
-const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
+const List = ({items, isRemovable, activeList}) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const isLoading = useSelector(state => state.lists.isLoading.removeList)
   const tasks = useSelector(state => state.tasks.tasks)
 
-  const onClickItem = (item) => {
-    onClickCategory(item)
-  }
-
   const removeList = (e, item) => {
-    e.stopPropagation()
-    submit('Вы уверены?', confirmRemoveList.bind(this, item.id))
+    e.preventDefault()
+    submit('Вы уверены?', confirmRemoveList.bind(this, item._id))
   }
   const confirmRemoveList = (id) => {
-    const newTasks = tasks.filter(task => task.listId !== id)
-    onClickCategory({id: 'all_tasks'})
-    newTasks && dispatch(deleteTask(null, newTasks))
+    // const newTasks = tasks.filter(task => task.listId !== _id)
+    navigate('/')
+    /*    newTasks && dispatch(deleteTask(null, newTasks))*/
     dispatch(deleteList(id))
+  }
+  const handleActiveList = (item) => {
+    dispatch(listsActions.setActiveList(item))
   }
 
   return (
-    <ul onClick={onClick} className="list">
+    <ul className="list">
       {items &&
       items.map((item, index) => (
-        <Link className="list__link" key={`list-${item.id}-${index}`} to={getLink(item.id)}>
+        <NavLink key={`list-${item._id}-${index}`}
+                 onClick={() => handleActiveList(item)} className="list__link" to={getLink(item._id)}>
           <li
-            onClick={onClickCategory ? () => onClickItem(item) : null}
-            className={classNames(item.className, {'active': activeList && item.id === activeList.id})}>
+            className={classNames("list__item", {'active': activeList && item._id === activeList._id})}>
             <i>
               {
                 item.icon ? (item.icon) :
@@ -52,8 +52,7 @@ const List = ({items, isRemovable, activeList, onClick, onClickCategory}) => {
                  alt="Remove category"/>
             }
           </li>
-        </Link>
-
+        </NavLink>
       ))
       }
     </ul>

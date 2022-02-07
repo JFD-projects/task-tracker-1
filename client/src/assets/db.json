@@ -36,8 +36,7 @@
       "id": 6,
       "listId": 1,
       "text": "Убраться к приходу гостей (пылесос, протереть пыль, помыть посуду)",
-      "status": "plan_tasks",
-      "attitude": "plan_tasks"
+      "status": "plan_tasks"
     },
     {
       "id": 10,

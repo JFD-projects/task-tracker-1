@@ -3,7 +3,7 @@ const {Schema, model} = require('mongoose')
 const schema = new Schema({
   listId: Number,
   text: String,
-  attitude: {
+  status: {
     type: String, enum: ['plan_tasks', 'process_tasks', 'ready_tasks']
   },
 }, {

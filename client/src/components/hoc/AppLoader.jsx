@@ -2,39 +2,34 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "react-loader-spinner";
 import {ToastContainer, Zoom} from "react-toastify";
-import {useHistory, useLocation} from "react-router-dom";
 import {fetchLists, listsActions} from "../../redux/reducers/listsReducer";
 import {fetchTasks} from "../../redux/reducers/tasksReducer";
+import {getCurrentUser, getIsLoggedIn} from "../../redux/reducers/authReducer";
+import Login from "../pages/Login";
+import {useNavigate} from "react-router-dom";
+import localStorageService from "../../services/local.storage.service";
 
 const AppLoader = ({children}) => {
   const dispatch = useDispatch()
+  const isLoggedIn = useSelector(getIsLoggedIn())
   const isLoadingLists = useSelector(state => state.lists.isLoading.fetchLists)
-  const lists = useSelector(state => state.lists.lists)
-  const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
+  const userId = localStorageService.getLocalId()
 
   useEffect(() => {
-    dispatch(fetchLists())
-    dispatch(fetchTasks())
-    dispatch(listsActions.setActiveList({id: 'all_tasks'}))
-  }, [])
+    if (isLoggedIn && userId) {
+      dispatch(fetchLists())
+      dispatch(fetchTasks())
+      dispatch(getCurrentUser(userId))
+      dispatch(listsActions.setActiveList({_id: 'all_tasks'}))
+      navigate('/')
+    }
+  }, [isLoggedIn])
 
-  useEffect(() => {
-    const page = location.pathname.split("/")
-    if (page[1] === 'statistics') {
-      return dispatch(listsActions.setActiveList({id: 'statistics'}))
-    }
-    if (page[1] === 'lists') {
-      const list = lists.find(list => list.id === +page[2]);
-      return list ? dispatch(listsActions.setActiveList(list)) : history.push(`/`)
-    }
-    if (page[1] === 'task') {
-      return dispatch(listsActions.setActiveList({id: 'task'}))
-    } else {
-      return dispatch(listsActions.setActiveList({id: 'all_tasks'}))
-    }
-  }, [lists, location.pathname])
 
+  if (!isLoggedIn) {
+    return <Login/>
+  }
   return (
     <div className="todo">
       {isLoadingLists ?

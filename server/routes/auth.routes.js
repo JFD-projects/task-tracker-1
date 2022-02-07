@@ -34,6 +34,7 @@ router.post('/signUp', signUpValidations, async (req, res) => {
       })
     }
     const {email, password} = req.body
+
     const existingUser = await User.findOne({email})
     if (existingUser) {
       return res.status.json({
@@ -84,7 +85,7 @@ router.post('/signInWithPassword', signInValidations, async (req, res) => {
         }
       })
     }
-    const isPasswordEqual = bcrypt.compare(password, existingUser.password)
+    const isPasswordEqual = await bcrypt.compare(password, existingUser.password)
     if (!isPasswordEqual) {
       return res.status(400).send({
         error: {
@@ -113,7 +114,6 @@ router.post('/token', async (req, res) => {
     const {refresh_token: refreshToken} = req.body
     const data = tokenService.validateRefresh(refreshToken)
     const dbToken = await tokenService.findToken(refreshToken)
-
     if (isTokenInvalid(data, dbToken)) {
       return res.status(401).json({
         message: "Unauthorized"

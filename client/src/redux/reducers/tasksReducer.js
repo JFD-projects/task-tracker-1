@@ -3,7 +3,7 @@ import {tasksService} from "../../services/task.service";
 
 const InitialState = {
   tasks: [],
-  isLoading: {fetchTasks: false, addTask: false, removeTask: false, editTask: false},
+  isLoadingTasks: {fetchTasks: false, addTask: false, removeTask: false, editTask: false},
 }
 
 const tasksReducer = (state = InitialState, action) => {
@@ -50,9 +50,13 @@ const tasksReducer = (state = InitialState, action) => {
       const newValue = {[action.payload.field]: action.payload.val}
       return {
         ...state,
-        isLoading: {...state.isLoading, ...newValue}
+        isLoading: {...state.isLoadingTasks, ...newValue}
       }
     }
+    case 'RESET_TASK_DATA':
+      return {
+        ...InitialState
+      }
     default:
       return state;
   }
@@ -64,6 +68,7 @@ export const tasksActions = {
   addNewTask: (task) => ({type: "ADD_NEW_TASK", payload: task}),
   removeTask: (id, newTasks) => ({type: "REMOVE_TASK", payload: {id, newTasks}}),
   editTask: (id, obj) => ({type: "EDIT_TASK", payload: {id, obj} }),
+  resetData: () => ({type: "RESET_TASK_DATA"})
 }
 
 export const fetchTasks = () => (dispatch) => {
@@ -116,4 +121,9 @@ export const deleteTask = (id, newTasks) => (dispatch) => {
       id && toast.info('Задача удалена')
     })
 }
+
+export const removeTasksData = () => dispatch => {
+  dispatch(tasksActions.resetData())
+}
+
 export default tasksReducer

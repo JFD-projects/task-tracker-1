@@ -1,19 +1,33 @@
 .list {
   margin-bottom: 30px;
 }
-.list__add-button {
-  opacity: 0.4;
-}
-.list__add-button:hover {
-  opacity: 1;
-}
 .list__link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  color: black;
 }
 .list__link:active, .list__link:visited {
   color: black;
 }
-.list li {
+.list__link span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 135px;
+  white-space: nowrap;
+  flex: 1;
+}
+.list__link p {
+  margin-right: 15px;
+}
+.list__link i {
+  display: flex;
+  margin-right: 10px;
+}
+.list__link i img {
+  opacity: 0.6;
+}
+.list__item {
   display: flex;
   align-items: center;
   padding: 10px 12px;
@@ -22,40 +36,23 @@
   border-radius: 10px;
   transition: background 0.25s ease-in-out;
 }
-.list li span {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 160px;
-  white-space: nowrap;
-  flex: 1;
+.list__item:hover {
+  background: rgba(255, 255, 255, 0.7);
 }
-.list li p {
-  margin-right: 15px;
+.list__item.active {
+  background: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
-.list li:hover .list__remove-icon {
+.list__item:hover .list__remove-icon {
   opacity: 0.2;
 }
-.list li .list__remove-icon {
+.list__item .list__remove-icon {
   padding-top: 2px;
   transition: opacity 0.25s ease-in-out;
   opacity: 0;
 }
-.list li .list__remove-icon:hover {
+.list__item .list__remove-icon:hover {
   opacity: 0.8;
-}
-.list li:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-.list li.active {
-  background: #FFFFFF;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-}
-.list li i {
-  display: flex;
-  margin-right: 10px;
-}
-.list li i img {
-  opacity: 0.6;
 }
 
 /*# sourceMappingURL=list.css.map */

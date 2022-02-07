@@ -2,11 +2,11 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteTask} from "../../redux/reducers/tasksReducer";
 import {submit} from "../utils/confirm";
-import {useHistory} from "react-router-dom";
+import {useHistory, useNavigate} from "react-router-dom";
 
 const Task = ({id, text }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const isLoadingDeleteTask = useSelector(state => state.tasks.isLoading.removeTask)
   const isLoadingEditTaskName = useSelector(state => state.tasks.isLoading.editTask)
 
@@ -17,7 +17,7 @@ const Task = ({id, text }) => {
     dispatch(deleteTask(id, null))
   }
   const onEditTask = () => {
-    history.push(`/task/${id}`)
+    navigate(`/task/${id}`)
   }
 
   return (

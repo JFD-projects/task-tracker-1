@@ -1,8 +1,21 @@
+.add__list-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 12px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  transition: background 0.25s ease-in-out;
+}
+.add__list-item:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
 .add__list-popup {
   width: 185px;
-  height: 120px;
+  height: 130px;
   background: #ffffff;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
   border-radius: 10px;
   padding: 12px;
   position: absolute;
@@ -15,7 +28,6 @@
 .add__list-popup-colors {
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
 }
 .add__list-popup-close-btn {
   position: absolute;

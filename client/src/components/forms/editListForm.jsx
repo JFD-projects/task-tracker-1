@@ -27,8 +27,7 @@ const EditListForm = ({list}) => {
       toast.info('Введите название списка!')
       return
     }
-    dispatch(editListName(list.id, form.categoryName, onClose))
-    dispatch(listsActions.setActiveList({id: list.id}))
+    dispatch(editListName(list._id, form.categoryName, onClose))
 
   }
 

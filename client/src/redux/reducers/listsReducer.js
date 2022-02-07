@@ -27,7 +27,7 @@ const listsReducer = (state = InitialState, action) => {
       }
     }
     case "REMOVE_LIST": {
-      const newList = state.lists.filter(list => list.id !== action.payload)
+      const newList = state.lists.filter(list => list._id !== action.payload)
       return {
         ...state,
         lists: newList
@@ -35,7 +35,7 @@ const listsReducer = (state = InitialState, action) => {
     }
     case "EDIT_LIST": {
       const newObj = state.lists.map(list => {
-        if (list.id === action.payload.id) {
+        if (list._id === action.payload.id) {
           list.name = action.payload.name
         }
         return list
@@ -57,6 +57,10 @@ const listsReducer = (state = InitialState, action) => {
         ...state,
         activeList: action.payload
       }
+    case 'RESET_LIST_DATA':
+      return {
+        ...InitialState
+      }
     default:
       return state;
   }
@@ -69,6 +73,7 @@ export const listsActions = {
   removeList: (val) => ({type: "REMOVE_LIST", payload: val}),
   setLoading: (val, field) => ({type: "SET_LOADING", payload: {val, field}}),
   setActiveList: (obj) => ({type: "SET_ACTIVE_LIST", payload: obj}),
+  resetData: () => ({type: "RESET_LIST_DATA"})
 }
 
 export const fetchLists = () => (dispatch) => {
@@ -96,8 +101,10 @@ export const postNewList = (newList, callback) => (dispatch) => {
 export const editListName = (id, name, callback) => (dispatch) => {
   dispatch(listsActions.setLoading(true, "editNameList"))
   listsService.editTitle(id, name).then((data) => {
-    if (data === 200) {
+    if (data) {
       dispatch(listsActions.editNameList(id, name))
+      dispatch(listsActions.setActiveList(data))
+
       callback()
     }
   }).catch(() => {
@@ -123,4 +130,9 @@ export const deleteList = (id) => (dispatch) => {
       toast.info('Список удален')
     })
 }
+
+export const removeListsData = () => dispatch => {
+  dispatch(listsActions.resetData())
+}
+
 export default listsReducer
