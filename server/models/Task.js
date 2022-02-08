@@ -1,8 +1,13 @@
 const {Schema, model} = require('mongoose')
 
 const schema = new Schema({
-  listId: Number,
   text: String,
+  listId: {
+    type: Schema.Types.ObjectId, ref: 'List'
+  },
+  userId: {
+    type: Schema.Types.ObjectId, ref: 'User'
+  },
   status: {
     type: String, enum: ['plan_tasks', 'process_tasks', 'ready_tasks']
   },

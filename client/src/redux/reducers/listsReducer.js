@@ -1,5 +1,6 @@
 import {toast} from "react-toastify";
 import {listsService} from "../../services/list.service";
+import {deleteListTasks, tasksActions} from "./tasksReducer";
 
 const InitialState = {
   lists: [],
@@ -88,13 +89,13 @@ export const postNewList = (newList, callback) => (dispatch) => {
   dispatch(listsActions.setLoading(true, "addList"))
   listsService.addList(newList).then(data => {
     dispatch(listsActions.addNewList(data))
+    toast.info('Список добавлен')
   }).catch(() => {
     toast.error('Ошибка при добавлении списка')
     callback()
   })
     .finally(() => {
       dispatch(listsActions.setLoading(false, "addList"))
-      toast.info('Список добавлен')
       callback()
     })
 }
@@ -104,7 +105,7 @@ export const editListName = (id, name, callback) => (dispatch) => {
     if (data) {
       dispatch(listsActions.editNameList(id, name))
       dispatch(listsActions.setActiveList(data))
-
+      toast.info('Название списка обновлено')
       callback()
     }
   }).catch(() => {
@@ -112,7 +113,6 @@ export const editListName = (id, name, callback) => (dispatch) => {
   })
     .finally(() => {
       dispatch(listsActions.setLoading(false, "editNameList"))
-      toast.info('Название списка обновлено')
     })
 }
 
@@ -121,13 +121,14 @@ export const deleteList = (id) => (dispatch) => {
   listsService.removeList(id).then((res) => {
     if (res.status === 200) {
       dispatch(listsActions.removeList(id))
+      deleteListTasks(id)
+      toast.info('Список удален')
     }
   }).catch(() => {
     toast.error('Ошибка при удалении списка')
   })
     .finally(() => {
       dispatch(listsActions.setLoading(false, "removeList"))
-      toast.info('Список удален')
     })
 }
 

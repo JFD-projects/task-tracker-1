@@ -42,9 +42,9 @@ const Tasks = ({list, tasks, withNavigate}) => {
         {listView && listView.length === 0
           ? <h2>Задачи отсутствуют</h2>
           : listView.map(task => (
-            <Task key={`task-${task.id}`}
+            <Task key={`task-${task._id}`}
                   {...task}
-                  listId={list.id}/>
+                  listId={list._id}/>
           ))
         }
       </div>

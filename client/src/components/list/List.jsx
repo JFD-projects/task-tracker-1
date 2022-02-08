@@ -14,16 +14,13 @@ const List = ({items, isRemovable, activeList}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isLoading = useSelector(state => state.lists.isLoading.removeList)
-  const tasks = useSelector(state => state.tasks.tasks)
 
   const removeList = (e, item) => {
     e.preventDefault()
     submit('Вы уверены?', confirmRemoveList.bind(this, item._id))
   }
   const confirmRemoveList = (id) => {
-    // const newTasks = tasks.filter(task => task.listId !== _id)
     navigate('/')
-    /*    newTasks && dispatch(deleteTask(null, newTasks))*/
     dispatch(deleteList(id))
   }
   const handleActiveList = (item) => {

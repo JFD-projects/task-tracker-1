@@ -1,7 +1,3 @@
-body.react-confirm-alert-body-element {
-  overflow: hidden;
-}
-
 .react-confirm-alert {
   &-blur {
     filter: url(#gaussian-blur);
@@ -17,17 +13,10 @@ body.react-confirm-alert-body-element {
     bottom: 0;
     z-index: 99;
     background: rgba(255, 255, 255, 0.9);
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    -webkit-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
-    -moz-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
-    -o-animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
     animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
   }
 
@@ -53,10 +42,6 @@ body.react-confirm-alert-body-element {
   }
 
   &-button-group {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -77,33 +62,6 @@ body.react-confirm-alert-body-element {
         background: lighten(#333, 15%);
       }
     }
-  }
-}
-
-@-webkit-keyframes react-confirm-alert-fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes react-confirm-alert-fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes react-confirm-alert-fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 

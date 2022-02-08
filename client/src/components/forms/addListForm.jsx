@@ -25,7 +25,7 @@ const AddListForm = () => {
   const isLoading = useSelector(state => state.lists.isLoading.addList)
   const onClose = () => {
     setHiddenPopup(false)
-    handleChange({categoryName: "", value: ''})
+    handleChange({name: 'categoryName', value: ''})
     setSelectedColor(colors[0].id)
   }
   useOutsideAlerter(wrapperRef, onClose)
@@ -40,7 +40,6 @@ const AddListForm = () => {
       userId: userId,
       color: color.hex
     }
-    console.log(newList)
     dispatch(postNewList(newList, onClose))
   }
 

@@ -9,7 +9,9 @@ const AllTasks = () => {
   const lists = useSelector(state => state.lists.lists)
   const tasks = useSelector(state => state.tasks.tasks)
   const mergedData = useMerger(lists, tasks, "tasks", "listId", "_id")
-
+  if (lists.length === 0 && tasks.length === 0) {
+    return <h3>Задачи отсутствуют</h3>
+  }
   return (
     isLoadingTasks ?
       <Loader className="todo__loader" type="ThreeDots" color="#00BFFF" height={80} width={80}/>

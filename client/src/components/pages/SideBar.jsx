@@ -22,7 +22,7 @@ const SideBar = () => {
       <List items={[
         {
           _id: 'all_tasks',
-          name: 'Все списки',
+          name: 'Все категории',
           icon: <img src={imgList} alt="List icon"/>
         }]}
             activeList={activeList}

@@ -8,11 +8,9 @@ export const useForm = (initialState = {}) => {
       [target.name]: target.value,
     }));
   };
-  const changeAllForm = (fields) => {
-    fields.forEach(field => {
-      handleChange(field)
-    })
+  const changeAllForm = (state) => {
+    setForm(state)
   }
 
-  return { changeAllForm, handleChange, form}
+  return { changeAllField: changeAllForm, handleChange, form}
 }

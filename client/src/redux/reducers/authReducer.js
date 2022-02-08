@@ -76,7 +76,6 @@ export const getCurrentUser = (id) => async dispatch => {
     const data = await authService.getCurrentUser(id)
     dispatch(userRequestSuccess(data))
   } catch (e) {
-    console.table(e)
     dispatch(authRequestFailed(e.message))
   }
 }

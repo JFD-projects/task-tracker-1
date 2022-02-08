@@ -28,9 +28,7 @@ class TokenService {
 
   validateRefresh(refreshToken) {
     try {
-      const token = jwt.verify(refreshToken, config.get('refreshSecret'))
-      token._id = token.id
-      return token
+      return jwt.verify(refreshToken, config.get('refreshSecret'))
 
     } catch (e) {
       return null

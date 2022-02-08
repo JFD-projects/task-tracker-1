@@ -149,11 +149,18 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 400px;
+  width: 420px;
+  background-color: #f4f6f8;
+  border-radius: 10px;
+  padding: 20px;
 }
 .tasks__form-block button {
   width: 200px;
-  margin-right: 10px;
+}
+.tasks__form-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tasks__items-row-attitude {

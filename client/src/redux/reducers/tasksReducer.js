@@ -21,12 +21,14 @@ const tasksReducer = (state = InitialState, action) => {
       }
     }
     case "REMOVE_TASK": {
-      let newTasks
-      if (action.payload.newTasks) {
-        newTasks = action.payload.newTasks
-      } else {
-        newTasks = state.tasks.filter(task => task.id !== action.payload.id)
+      const newTasks = state.tasks.filter(task => task._id !== action.payload)
+      return {
+        ...state,
+        tasks: newTasks
       }
+    }
+    case "REMOVE_LIST_TASK": {
+      const newTasks = state.tasks.filter(task => task.listId !== action.payload)
       return {
         ...state,
         tasks: newTasks
@@ -34,10 +36,8 @@ const tasksReducer = (state = InitialState, action) => {
     }
     case "EDIT_TASK": {
       const newObj = state.tasks.map(task => {
-        if (task.id === action.payload.id) {
-          task.text = action.payload.obj.text
-          task.listId = action.payload.obj.listId
-          task.status = action.payload.obj.status
+        if (task._id === action.payload.id) {
+          return action.payload.data
         }
         return task
       })
@@ -50,7 +50,7 @@ const tasksReducer = (state = InitialState, action) => {
       const newValue = {[action.payload.field]: action.payload.val}
       return {
         ...state,
-        isLoading: {...state.isLoadingTasks, ...newValue}
+        isLoadingTasks: {...state.isLoadingTasks, ...newValue}
       }
     }
     case 'RESET_TASK_DATA':
@@ -66,8 +66,9 @@ export const tasksActions = {
   addTasks: (data) => ({type: "FETCH_TASKS", payload: data}),
   setLoading: (val, field) => ({type: "SET_LOADING", payload: {val, field}}),
   addNewTask: (task) => ({type: "ADD_NEW_TASK", payload: task}),
-  removeTask: (id, newTasks) => ({type: "REMOVE_TASK", payload: {id, newTasks}}),
-  editTask: (id, obj) => ({type: "EDIT_TASK", payload: {id, obj} }),
+  removeTask: (id) => ({type: "REMOVE_TASK", payload: id}),
+  removeListTasks: (id) => ({type: "REMOVE_LIST_TASK", payload: id}),
+  editTask: (id, data) => ({type: "EDIT_TASK", payload: {id, data} }),
   resetData: () => ({type: "RESET_TASK_DATA"})
 }
 
@@ -83,44 +84,49 @@ export const postNewTask = (obj, callback) => (dispatch) => {
   dispatch(tasksActions.setLoading(true, "addTask"))
   tasksService.addTask(obj).then(data => {
     dispatch(tasksActions.addNewTask(data))
+    toast.info('Задача добавлена')
   }).catch(() => {
     toast.error('Ошибка при добавлении задачи')
     callback()
   })
     .finally(() => {
       dispatch(tasksActions.setLoading(false, "addTask"))
-      toast.info('Задача добавлена')
       callback()
     })
 }
 export const editTask = (id, obj) => (dispatch) => {
   dispatch(tasksActions.setLoading(true, "editTask"))
   tasksService.editTask(id, obj).then((data) => {
-    if (data === 200) {
-      dispatch(tasksActions.editTask(id, obj))
+    if (data) {
+      dispatch(tasksActions.editTask(id, data))
+      toast.info('Задача обновлена')
     }
-  }).catch(() => {
-    toast.error('Ошибка при измении задачи')
+  }).catch((e) => {
+    if (e.message) {
+      toast.error('Ошибка при измении задачи')
+    }
   })
     .finally(() => {
       dispatch(tasksActions.setLoading(false, "editTask"))
-      toast.info('Задача обновлена')
     })
 }
 
-export const deleteTask = (id, newTasks) => (dispatch) => {
+export const deleteTask = (id) => (dispatch) => {
   dispatch(tasksActions.setLoading(true, "removeTask"))
-  newTasks && dispatch(tasksActions.removeTask(id, newTasks))
-  tasksService.removeTask(id, newTasks).then(() => {
-    dispatch(tasksActions.removeTask(id, newTasks))
+  tasksService.removeTask(id).then(() => {
+    dispatch(tasksActions.removeTask(id))
+    toast.info('Задача удалена')
   }).catch(() => {
-    id && toast.error('Ошибка при удалении задачи')
+    toast.error('Ошибка при удалении задачи')
   })
     .finally(() => {
       dispatch(tasksActions.setLoading(false, "removeTask"))
-      id && toast.info('Задача удалена')
     })
 }
+export const deleteListTasks = (id) => (dispatch) => {
+  dispatch(tasksActions.removeListTasks(id))
+}
+
 
 export const removeTasksData = () => dispatch => {
   dispatch(tasksActions.resetData())

@@ -1,117 +1,68 @@
 [
   {
-    "id": 6,
-    "listId": 1,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Убраться к приходу гостей (пылесос, протереть пыль, помыть посуду)",
     "status": "plan_tasks"
   },
   {
-    "id": 10,
-    "listId": 2,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Заменить фильтра (воздушный, салон)",
     "status": "plan_tasks"
   },
   {
-    "id": 15,
-    "listId": 3,
-    "text": "50 Projects In 50 Days - HTML, CSS & JavaScript",
-    "status": "process_tasks"
-  },
-  {
-    "id": 16,
-    "listId": 3,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "[Udemy] CSS - The Complete Guide 2021 (incl. Flexbox, Grid & Sass)",
     "status": "ready_tasks"
   },
   {
-    "id": 17,
-    "listId": 3,
-    "text": "[Udemy] React с нуля для начинающих 3 проекта в портфолио (2020)",
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
+    "text": "Разобраться с протекающим краном",
     "status": "ready_tasks"
   },
   {
-    "id": 19,
-    "listId": 1,
-    "text": "Разобраться с протекающим краном",
-    "status": "ready_tasks",
-    "attitude": "plan_tasks"
-  },
-  {
-    "id": 21,
-    "listId": 2,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Провести ТО",
     "status": "ready_tasks"
   },
   {
-    "listId": 4,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Забрать заказ в Озоне до понедельника",
-    "status": "plan_tasks",
-    "id": 23
+    "status": "plan_tasks"
   },
   {
-    "listId": 5,
-    "text": "Страница одной задачи",
-    "status": "plan_tasks",
-    "id": 26
-  },
-  {
-    "listId": 5,
-    "text": "Логин",
-    "status": "plan_tasks",
-    "id": 27
-  },
-  {
-    "listId": 5,
-    "text": "Кастомный хук?",
-    "status": "ready_tasks",
-    "id": 28
-  },
-  {
-    "listId": 5,
-    "text": "Регистрация",
-    "status": "plan_tasks",
-    "id": 29
-  },
-  {
-    "listId": 5,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "удаление задач при удалении списка",
-    "status": "ready_tasks",
-    "id": 36
+    "status": "ready_tasks"
   },
   {
-    "listId": 5,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "not found при изменении query номера листа",
-    "status": "ready_tasks",
-    "id": 41
+    "status": "ready_tasks"
   },
   {
-    "listId": 1,
-    "text": "Убрать диван",
-    "status": "ready_tasks",
-    "id": 43
-  },
-  {
-    "listId": 2,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Замена колес",
-    "status": "process_tasks",
-    "id": 45
+    "status": "process_tasks"
   },
   {
-    "listId": 3,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Курс \"Веб-разработчик\"",
-    "status": "plan_tasks",
-    "id": 46
+    "status": "plan_tasks"
   },
   {
-    "listId": 4,
+    "listId": "6200c551084256de9eb93328",
+    "userId": "6200c551084256de9eb93328",
     "text": "Яндекс забрать фильтр",
-    "status": "ready_tasks",
-    "id": 47
-  },
-  {
-    "listId": 4,
-    "text": "Отправить на Почте России",
-    "status": "process_tasks",
-    "id": 48
+    "status": "ready_tasks"
   }
 ]

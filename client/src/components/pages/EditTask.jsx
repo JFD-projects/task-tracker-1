@@ -7,89 +7,112 @@ import SelectField from "../common/SelectField";
 import {editTask, postNewTask} from "../../redux/reducers/tasksReducer";
 import {useParams} from 'react-router-dom'
 import {toast} from "react-toastify";
+import {linksTasks} from "../constants/constants";
+import localStorageService from "../../services/local.storage.service";
 
 const EditTask = () => {
   const {id} = useParams()
-  const isAdding = useSelector(state => state.tasks.isLoading.addTask)
-  const isEditing = useSelector(state => state.tasks.isLoading.editTask)
+  const dispatch = useDispatch()
+  const isAdding = useSelector(state => state.tasks.isLoadingTasks.addTask)
+  const isEditing = useSelector(state => state.tasks.isLoadingTasks.editTask)
   const lists = useSelector(state => state.lists.lists)
   const tasks = useSelector(state => state.tasks.tasks)
+  const userId = localStorageService.getLocalId()
 
-  const options = lists.map(list => ({label: list.name, value: list._id}))
-  const status = [
-    {label: 'План', value: "plan_tasks"},
-    {label: 'В работе', value: "process_tasks"},
-    {label: 'Готовые', value: "ready_tasks"}
-  ]
-  const {form, handleChange, changeAllForm} = useForm({
-    listId: '',
+  const categoryOptions = lists.map(list => ({label: list.name, value: list._id}))
+  const statusOptions = linksTasks.map(link => ({label: link.name, value: link.id}))
+  const initialForm = {
+    listId: "",
     text: "",
     status: "",
-  })
+  }
+  const {form, handleChange, changeAllField} = useForm(initialForm)
+
+  const fillFields = React.useCallback(() => {
+    if (id && tasks.length > 0) {
+      const task = tasks.find(task => task._id === id)
+      changeAllField({
+        listId: task.listId,
+        text: task.text,
+        status: task.status,
+      })
+    }
+  }, [id])
 
   useEffect(() => {
-    if (id && tasks.length > 0) {
-      const task = tasks.find(task => task.id === +id)
-      changeAllForm([
-        {name: 'listId', value: task.listId},
-        {name: 'text', value: task.text},
-        {name: 'status', value: task.status}])
+    fillFields()
+    if (!id) {
+      changeAllField(initialForm)
     }
-  }, [id, tasks])
+  }, [id])
 
   const handleResetForm = () => {
-    changeAllForm([{name: 'listId', value: ''}, {name: 'text', value: ''}, {name: 'status', value: ''}])
+    changeAllField(initialForm)
   }
-  const dispatch = useDispatch()
 
   const handleAddTask = () => {
     if (!form.text) {
-      toast('Введите текст задачи')
+      return toast('Введите текст задачи')
     }
-    if (form.text && form.listId) {
-      const objTask = {
-        listId: +form.listId,
-        text: form.text,
-        status: form.status
-      }
-      dispatch(postNewTask(objTask, handleResetForm))
+    if (!form.listId) {
+      return toast('Добавьте категорию для задач')
     }
+    if (!form.status) {
+      return toast('Установите статус задачи')
+    }
+
+    const objTask = {
+      listId: form.listId,
+      text: form.text,
+      status: form.status,
+      userId
+    }
+    dispatch(postNewTask(objTask, handleResetForm))
   }
 
   const handleEditTask = () => {
     if (form.text) {
-      dispatch(editTask(+id, form))
+      dispatch(editTask(id, form))
     }
   }
 
   return (
     <div className="tasks__form">
-      <h2 className="tasks__title">{id ? "Отредактируйте задачу" : 'Создайте новую задачу'}</h2>
-      <div className="tasks__form-block">
-        <TextField value={form.text} name="text" onChange={handleChange} placeholder="Текст задачи"/>
-        <SelectField
-          onChange={handleChange}
-          name="listId"
-          value={form.listId}
-          options={options}
-          defaultOption={"Категория"}
-        />
-        <SelectField
-          onChange={handleChange}
-          name="status"
-          value={form.status}
-          options={status}
-          defaultOption={"Статус задачи"}
-        />
-
-        <Button onClick={handleResetForm} className="button button__gray" name="Очистить"/>
-        {
-          id ?
-            <Button disabled={isEditing} onClick={handleEditTask} name={isEditing ? 'Изменение' : 'Изменить задачу'}/>
-            : <Button disabled={isAdding} onClick={handleAddTask} name={isAdding ? 'Добавление' : 'Добавить задачу'}/>
-
-        }
-      </div>
+      {lists.length === 0 ?
+        <h3>Отсутствуют категории для задачи</h3>
+        : <>
+          <h2 className="tasks__title">{id ? "Отредактируйте задачу" : 'Создайте новую задачу'}</h2>
+          <div className="tasks__form-block">
+            <TextField value={form.text} name="text" onChange={handleChange} placeholder="Текст задачи"/>
+            <div className="tasks__form-row">
+              <SelectField
+                onChange={handleChange}
+                name="listId"
+                value={form.listId}
+                options={categoryOptions}
+                defaultOption={"Категория"}
+              />
+              <SelectField
+                onChange={handleChange}
+                name="status"
+                value={form.status}
+                options={statusOptions}
+                defaultOption={"Статус задачи"}
+              />
+            </div>
+            <div className="tasks__form-row">
+              <Button onClick={handleResetForm} className="button button__gray" name="Очистить"/>
+              {
+                id ?
+                  <Button disabled={isEditing} onClick={handleEditTask}
+                          name={isEditing ? 'Изменение' : 'Изменить задачу'}/>
+                  : <Button disabled={isAdding} onClick={handleAddTask}
+                            name={isAdding ? 'Добавление' : 'Добавить задачу'}/>
+              }
+            </div>
+          </div>
+        </>
+      }
     </div>
   );
 };
