@@ -1,14 +1,13 @@
 import React from "react";
-import '../../css/list.scss';
+import '../../../css/list.scss';
 import classNames from "classnames";
-import Badge from "../common/Badge";
-import removeImg from '../../assets/img/remove.svg'
+import Badge from "../../common/Badge";
+import removeImg from '../../../assets/img/remove.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {deleteList, listsActions} from "../../redux/reducers/listsReducer";
-import {deleteTask} from "../../redux/reducers/tasksReducer";
-import {submit} from "../utils/confirm";
+import {deleteList, listsActions} from "../../../redux/reducers/listsReducer";
+import {submit} from "../../utils/confirm";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getLink} from "../utils/getLink";
+import {getLink} from "../../utils/getLink";
 
 const List = ({items, isRemovable, activeList}) => {
   const dispatch = useDispatch()
@@ -42,7 +41,6 @@ const List = ({items, isRemovable, activeList}) => {
               }
             </i>
             <span>{item.name}</span>
-            {item.tasks && item.tasks.length > 0 && <p>({item.tasks.length})</p>}
             {isRemovable &&
             <img onClick={isLoading ? null : (e) => removeList(e, item)} className="list__remove-icon"
                  src={removeImg}

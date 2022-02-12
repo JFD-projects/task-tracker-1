@@ -11,9 +11,9 @@ import localStorageService from "../../services/local.storage.service";
 
 const AppLoader = ({children}) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const isLoggedIn = useSelector(getIsLoggedIn())
   const isLoadingLists = useSelector(state => state.lists.isLoading.fetchLists)
-  const navigate = useNavigate()
   const userId = localStorageService.getLocalId()
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const AppLoader = ({children}) => {
       dispatch(listsActions.setActiveList({_id: 'all_tasks'}))
       navigate('/')
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn, userId])
 
 
   if (!isLoggedIn) {

@@ -2,13 +2,14 @@ import React from 'react';
 import {ResponsivePie} from "@nivo/pie";
 import {ResponsiveRadar} from '@nivo/radar'
 import "../../css/statistics.scss"
+import "../../css/common.scss"
 import {useSelector} from "react-redux";
-import {useMerger} from "../hooks/useMerger";
+import {getMergedData} from "../../redux/reducers/tasksReducer";
 
 const Statistics = () => {
   const lists = useSelector(state => state.lists.lists)
   const tasks = useSelector(state => state.tasks.tasks)
-  const mergedData = useMerger(lists, tasks, "tasks", "listId", "_id")
+  const mergedData = useSelector(getMergedData())
 
   const pieData = mergedData.map(obj => {
     return {id: obj.name, label: obj.name, value: obj.tasks.length}
@@ -26,7 +27,7 @@ const Statistics = () => {
       <h1>Статистика</h1>
       {
         (lists.length === 0 && tasks.length === 0) ?
-          <h3>Задачи отсутствуют</h3>
+          <h2 className="emptyTasks">Задачи отсутствуют</h2>
           : <>
             <div className="stats__container">
               <h3 className="stats__container-title">Количество задач в списках</h3>

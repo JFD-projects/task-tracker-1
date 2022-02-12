@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import TextField from "../common/textField";
+import TextField from "../common/TextField";
 import {useDispatch} from "react-redux";
 import {signUp} from "../../redux/reducers/authReducer";
 import Button from "../common/Button";

@@ -1,17 +1,18 @@
 import React, {useRef, useState} from 'react';
 import Badge from "../common/Badge";
-import '../../css/addListForm.scss';
+import '../../css/forms.scss';
 import imgAdd from "../../assets/img/add.svg";
 import imgClose from "../../assets/img/close.svg";
 import {toast} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "../common/Button";
 import {useForm} from "../hooks/useForm";
-import TextField from "../common/textField";
+import TextField from "../common/TextField";
 import {useOutsideAlerter} from "../hooks/useOutsideAlerter";
 import {colors} from "../constants/colors";
 import {getCurrentUserId} from "../../redux/reducers/authReducer";
 import {postNewList} from "../../redux/reducers/listsReducer";
+import Fade from "../hoc/Fade";
 
 const AddListForm = () => {
   const wrapperRef = useRef(null);
@@ -54,24 +55,24 @@ const AddListForm = () => {
           <span>Добавить категорию</span>
         </li>
       </ul>
-      {hiddenPopup &&
-      <div className="add__list-popup">
-        <img src={imgClose} onClick={onClose} alt="Close" className="add__list-popup-close-btn"/>
-        <TextField name="categoryName"
-                   onChange={handleChange}
-                   value={form.categoryName?.substring(0, 20)}
-                   placeholder="Название категории"/>
-        <div className="add__list-popup-colors">
-          {colors.map(color => (
-            <Badge selectedColor={selectedColor}
-                   id={color.id}
-                   onClick={() => setSelectedColor(color.id)}
-                   key={color.hex}
-                   color={color.hex}/>))}
+      <Fade show={hiddenPopup}>
+        <div className="add__list-popup">
+          <img src={imgClose} onClick={onClose} alt="Close" className="add__list-popup-close-btn"/>
+          <TextField name="categoryName"
+                     onChange={handleChange}
+                     value={form.categoryName?.substring(0, 20)}
+                     placeholder="Название категории"/>
+          <div className="add__list-popup-colors">
+            {colors.map(color => (
+              <Badge selectedColor={selectedColor}
+                     id={color.id}
+                     onClick={() => setSelectedColor(color.id)}
+                     key={color.hex}
+                     color={color.hex}/>))}
+          </div>
+          <Button onClick={addList} name="Добавить" disabled={isLoading}/>
         </div>
-        <Button onClick={addList} name="Добавить" disabled={isLoading}/>
-      </div>
-      }
+      </Fade>
     </div>
   );
 };

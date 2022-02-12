@@ -10,28 +10,28 @@ const Login = () => {
   }
   return (
     <div className="todo__login">
-        <div className="todo__login-container">
-          {
-            typeForm === 'login'
-              ?
-              <>
-                <h2>Login</h2>
-                <LoginForm/>
-                <div className="toggleForm">
-                  <p>Don't have account?</p>
-                  <Button onClick={toggleFormType} name='Sign up'/>
-                </div>
-              </>
-              :
-              <>
-                <h2>Registration</h2>
-                <RegisterForm/>
-                <div className="toggleForm">
-                  <p>Already have account?</p>
-                  <Button onClick={toggleFormType} name='Sign in'/>
-                </div>
-              </>
-          }
+      <div className="todo__login-container">
+        {
+          typeForm === 'login'
+            ?
+            <>
+              <h2>Login</h2>
+              <LoginForm/>
+              <div className="todo__login-toggleForm">
+                <p>Don't have account?</p>
+                <Button onClick={toggleFormType} name='Sign up'/>
+              </div>
+            </>
+            :
+            <>
+              <h2>Registration</h2>
+              <RegisterForm/>
+              <div className="todo__login-toggleForm">
+                <p>Already have account?</p>
+                <Button onClick={toggleFormType} name='Sign in'/>
+              </div>
+            </>
+        }
       </div>
     </div>
   )

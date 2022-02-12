@@ -1,16 +1,15 @@
 import React from 'react';
+import '../../css/common.scss'
 import Loader from "react-loader-spinner";
-import {Tasks} from "../index";
 import {useSelector} from "react-redux";
-import {useMerger} from "../hooks/useMerger";
+import {getMergedData} from "../../redux/reducers/tasksReducer";
+import Tasks from "../UI/Tasks/Tasks";
 
 const AllTasks = () => {
   const isLoadingTasks = useSelector(state => state.lists.isLoading.fetchTasks)
-  const lists = useSelector(state => state.lists.lists)
-  const tasks = useSelector(state => state.tasks.tasks)
-  const mergedData = useMerger(lists, tasks, "tasks", "listId", "_id")
-  if (lists.length === 0 && tasks.length === 0) {
-    return <h3>Задачи отсутствуют</h3>
+  const mergedData = useSelector(getMergedData())
+  if (!mergedData.length) {
+    return <h2 className="emptyTasks">Добавьте категорию, чтобы начать работать с задачами</h2>
   }
   return (
     isLoadingTasks ?

@@ -17,24 +17,15 @@
     span {
       text-overflow: ellipsis;
       overflow: hidden;
-      width: 135px;
+      width: 150px;
       white-space: nowrap;
       flex: 1;
-    }
-
-    p {
-      margin-right: 15px;
     }
 
     i {
       display: flex;
       margin-right: 10px;
-
-      img {
-        opacity: 0.6;
-      }
     }
-
   }
 
   &__item {
@@ -45,7 +36,6 @@
     margin-bottom: 5px;
     border-radius: 10px;
     transition: background 0.25s ease-in-out;
-
 
     &:hover {
       background: rgba(255, 255, 255, 0.7);

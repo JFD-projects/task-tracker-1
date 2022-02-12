@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useForm} from "../hooks/useForm";
 import {useDispatch, useSelector} from "react-redux";
-import TextField from "../common/textField";
+import TextField from "../common/TextField";
 import Button from "../common/Button";
 import SelectField from "../common/SelectField";
-import {editTask, postNewTask} from "../../redux/reducers/tasksReducer";
+import {editTask, getMergedData, postNewTask} from "../../redux/reducers/tasksReducer";
 import {useParams} from 'react-router-dom'
 import {toast} from "react-toastify";
 import {linksTasks} from "../constants/constants";
@@ -15,11 +15,11 @@ const EditTask = () => {
   const dispatch = useDispatch()
   const isAdding = useSelector(state => state.tasks.isLoadingTasks.addTask)
   const isEditing = useSelector(state => state.tasks.isLoadingTasks.editTask)
-  const lists = useSelector(state => state.lists.lists)
   const tasks = useSelector(state => state.tasks.tasks)
+  const mergedData = useSelector(getMergedData())
   const userId = localStorageService.getLocalId()
 
-  const categoryOptions = lists.map(list => ({label: list.name, value: list._id}))
+  const categoryOptions = mergedData.map(data => ({label: data.name, value: data._id}))
   const statusOptions = linksTasks.map(link => ({label: link.name, value: link.id}))
   const initialForm = {
     listId: "",
@@ -29,7 +29,7 @@ const EditTask = () => {
   const {form, handleChange, changeAllField} = useForm(initialForm)
 
   const fillFields = React.useCallback(() => {
-    if (id && tasks.length > 0) {
+    if (id && tasks) {
       const task = tasks.find(task => task._id === id)
       changeAllField({
         listId: task.listId,
@@ -78,7 +78,7 @@ const EditTask = () => {
 
   return (
     <div className="tasks__form">
-      {lists.length === 0 ?
+      {!mergedData ?
         <h3>Отсутствуют категории для задачи</h3>
         : <>
           <h2 className="tasks__title">{id ? "Отредактируйте задачу" : 'Создайте новую задачу'}</h2>
@@ -101,7 +101,6 @@ const EditTask = () => {
               />
             </div>
             <div className="tasks__form-row">
-              <Button onClick={handleResetForm} className="button button__gray" name="Очистить"/>
               {
                 id ?
                   <Button disabled={isEditing} onClick={handleEditTask}
@@ -109,6 +108,7 @@ const EditTask = () => {
                   : <Button disabled={isAdding} onClick={handleAddTask}
                             name={isAdding ? 'Добавление' : 'Добавить задачу'}/>
               }
+              <Button onClick={handleResetForm} className="button button__gray" name="Очистить"/>
             </div>
           </div>
         </>

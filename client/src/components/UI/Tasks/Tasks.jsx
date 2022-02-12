@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import "../../css/tasks.scss"
+import "../../../css/tasks.scss"
+import "../../../css/common.scss"
 import Task from "./Task";
 import {NavLink} from "react-router-dom";
-import {linksTasks} from "../constants/constants";
-import EditListForm from "../forms/editListForm";
-import {listsActions} from "../../redux/reducers/listsReducer";
+import {linksTasks} from "../../constants/constants";
+import EditListForm from "../../forms/EditListForm";
+import {listsActions} from "../../../redux/reducers/listsReducer";
 import {useDispatch} from "react-redux";
+import {Counter} from "../../common/Counter";
 
 const Tasks = ({list, tasks, withNavigate}) => {
   const dispatch = useDispatch()
@@ -14,16 +16,16 @@ const Tasks = ({list, tasks, withNavigate}) => {
 
   const valueTasks = (link) => {
     const length = (tasks ? tasks : list.tasks).filter(t => t.status === link.id).length
-    return length === 0 ? "" : <i className="badge_number"><span>{length}</span></i>
+    return length === 0 ? "" : <Counter count={length}/>
   }
 
-  const handleActiveList = (item) => {
-    dispatch(listsActions.setActiveList(item))
+  const handleActiveList = () => {
+    dispatch(listsActions.setActiveList(list))
   }
 
   return (
     <div className="tasks">
-      <NavLink onClick={() => handleActiveList(list)} to={`/lists/${list._id}`}>
+      <NavLink onClick={handleActiveList} to={`/lists/${list._id}`}>
         <h2 style={{color: list.color}} className="tasks__title">{list.name}
           {withNavigate && <EditListForm list={list}/>}</h2>
       </NavLink>
@@ -40,7 +42,7 @@ const Tasks = ({list, tasks, withNavigate}) => {
       </div>
       <div className="tasks__items">
         {listView && listView.length === 0
-          ? <h2>Задачи отсутствуют</h2>
+          ? <h2 className="emptyTasks">Задачи отсутствуют</h2>
           : listView.map(task => (
             <Task key={`task-${task._id}`}
                   {...task}

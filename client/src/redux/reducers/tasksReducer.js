@@ -127,9 +127,15 @@ export const deleteListTasks = (id) => (dispatch) => {
   dispatch(tasksActions.removeListTasks(id))
 }
 
-
 export const removeTasksData = () => dispatch => {
   dispatch(tasksActions.resetData())
+}
+
+export const getMergedData = () => state => {
+  return state.lists.lists.map((list) => ({
+   ...list,
+   tasks: state.tasks.tasks.filter(task => task.listId === list._id)
+ }))
 }
 
 export default tasksReducer

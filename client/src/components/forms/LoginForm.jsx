@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import TextField from "../common/textField";
-import * as yup from 'yup';
+import React, {useEffect} from 'react';
+import TextField from "../common/TextField";
 import {useDispatch, useSelector} from "react-redux";
 import {getError, signIn} from "../../redux/reducers/authReducer";
 import {toast} from "react-toastify";
@@ -8,18 +7,18 @@ import Button from "../common/Button";
 import {useForm} from "../hooks/useForm";
 
 const LoginForm = () => {
-  const {form , handleChange} = useForm( {
+  const {form, handleChange} = useForm({
     email: '',
     password: '',
   })
   const dispatch = useDispatch()
   const loginError = useSelector(getError())
+
   useEffect(() => {
     if (loginError) {
       toast(loginError)
     }
   }, [loginError])
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,7 +36,7 @@ const LoginForm = () => {
                  onChange={handleChange}
                  name="password"
                  type="password"/>
-      <Button name="Отправить"/>
+      <Button disabled={!form.email || !form.password } name="Отправить"/>
     </form>
   );
 };

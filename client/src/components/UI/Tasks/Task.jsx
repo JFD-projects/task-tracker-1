@@ -1,17 +1,17 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteTask} from "../../redux/reducers/tasksReducer";
-import {submit} from "../utils/confirm";
-import {useHistory, useNavigate} from "react-router-dom";
+import {deleteTask} from "../../../redux/reducers/tasksReducer";
+import {submit} from "../../utils/confirm";
+import {useNavigate} from "react-router-dom";
 
-const Task = ({_id, text }) => {
+const Task = ({_id, text}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isLoadingDeleteTask = useSelector(state => state.tasks.isLoadingTasks.removeTask)
   const isLoadingEditTaskName = useSelector(state => state.tasks.isLoadingTasks.editTask)
 
   const deleteTaskConfirm = () => {
-    dispatch(deleteTask(_id, null))
+    dispatch(deleteTask(_id))
   }
 
   const onRemoveTask = () => {
@@ -21,7 +21,7 @@ const Task = ({_id, text }) => {
   }
 
   const handleEditTask = () => {
-    if (!isLoadingEditTaskName){
+    if (!isLoadingEditTaskName) {
       navigate(`/task/${_id}`)
     }
   }

@@ -13,19 +13,13 @@
 .list__link span {
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 135px;
+  width: 150px;
   white-space: nowrap;
   flex: 1;
-}
-.list__link p {
-  margin-right: 15px;
 }
 .list__link i {
   display: flex;
   margin-right: 10px;
-}
-.list__link i img {
-  opacity: 0.6;
 }
 .list__item {
   display: flex;

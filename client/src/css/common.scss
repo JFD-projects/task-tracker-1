@@ -54,6 +54,7 @@
   flex-direction: column;
   gap: 5px;
 }
+
 .field__input {
   width: 100%;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
@@ -71,6 +72,7 @@
 .field__error {
   color: #e33737;
   font-size: 10px;
+
   &:empty {
     height: 12px;
   }
@@ -99,6 +101,9 @@
     color: white;
     background-color: #4dd599;
   }
+  option:checked {
+    background-color: #2ec180;
+  }
 
   &:focus {
     outline: none;
@@ -114,7 +119,50 @@
   height: 20px;
   opacity: 0.6;
   transition: opacity 0.25s ease-in-out;
+
   &:hover {
     opacity: 1;
+  }
+}
+
+.counter__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2ec180;
+  border-radius: 4px;
+  padding: 2px 10px;
+  margin: 0 10px;
+  & p {
+    color: #fff;
+  }
+}
+
+.emptyTasks {
+    position: relative;
+    top: 50%;
+    text-align: center;
+    font-family: Montserrat, serif;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 39px;
+    color: #C9D1D3;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 import Statistics from "./components/pages/Statistics";
 import NotFound from "./components/pages/NotFound";
-import SideBar from "./components/pages/SideBar";
+import SideBar from "./components/common/SideBar";
 import AllTasks from "./components/pages/AllTasks";
 import CategoryTasks from "./components/pages/CategoryTasks";
 import AppLoader from "./components/hoc/AppLoader";

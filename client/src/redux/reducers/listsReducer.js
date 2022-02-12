@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 import {listsService} from "../../services/list.service";
-import {deleteListTasks, tasksActions} from "./tasksReducer";
+import {deleteListTasks} from "./tasksReducer";
 
 const InitialState = {
   lists: [],

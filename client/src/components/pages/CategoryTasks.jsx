@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
-import {Tasks} from "../index";
 import {useSelector} from "react-redux";
+import Tasks from "../UI/Tasks/Tasks";
 
 const CategoryTasks = () => {
   const isLoadingTasks = useSelector(state => state.lists.isLoading.fetchTasks)
