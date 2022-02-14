@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import TextField from "../common/TextField";
 import {useDispatch, useSelector} from "react-redux";
-import {getError, signIn} from "../../redux/reducers/authReducer";
+import {getError, resetError, signIn} from "../../redux/reducers/authReducer";
 import {toast} from "react-toastify";
 import Button from "../common/Button";
 import {useForm} from "../hooks/useForm";
@@ -17,6 +17,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (loginError) {
       toast(loginError)
+      dispatch(resetError())
     }
   }, [loginError])
 

@@ -25,24 +25,13 @@ router.post('/signUp', signUpValidations, async (req, res) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(400).json({
-        error: {
-          message: 'INVALID_DATA',
-          code: 400,
-          errors: errors.array()
-        }
-      })
+      return res.status(400).send(errors)
     }
     const {email, password} = req.body
 
     const existingUser = await User.findOne({email})
     if (existingUser) {
-      return res.status.json({
-        error: {
-          message: "EMAIL_EXISTS",
-          code: 400
-        }
-      })
+      return res.status(400).send( "EMAIL_EXISTS")
     }
     const hashedPassword = await bcrypt.hash(password, 12)
     const newUser = await User.create({
@@ -56,9 +45,7 @@ router.post('/signUp', signUpValidations, async (req, res) => {
 
     res.status(201).send({...tokens, userId: newUser._id})
   } catch (e) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже"
-    })
+    res.status(500).send( "На сервере произошла ошибка. Попробуйте позже")
   }
 })
 
@@ -66,42 +53,25 @@ router.post('/signInWithPassword', signInValidations, async (req, res) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(400).json({
-        error: {
-          message: 'INVALID_DATA',
-          code: 400,
-          errors: errors.array()
-        }
-      })
+      return res.status(400).send('INVALID_DATA')
     }
 
     const {email, password} = req.body
     const existingUser = await User.findOne({email})
     if (!existingUser) {
-      return res.status(400).send({
-        error: {
-          message: 'EMAIL_NOT_FOUND',
-          code: 400,
-        }
-      })
+
+      return res.status(400).send('EMAIL_NOT_FOUND')
     }
     const isPasswordEqual = await bcrypt.compare(password, existingUser.password)
     if (!isPasswordEqual) {
-      return res.status(400).send({
-        error: {
-          message: 'INVALID_PASSWORD',
-          code: 400,
-        }
-      })
+      return res.status(400).send('INVALID_PASSWORD')
     }
 
     const tokens = tokenService.generate({_id: existingUser._id})
     await tokenService.save(existingUser._id, tokens.refreshToken)
     res.status(200).send({...tokens, userId: existingUser._id})
   } catch (e) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже"
-    })
+    res.status(500).send("На сервере произошла ошибка. Попробуйте позже")
   }
 })
 

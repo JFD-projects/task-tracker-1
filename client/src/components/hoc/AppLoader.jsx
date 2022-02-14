@@ -28,7 +28,10 @@ const AppLoader = ({children}) => {
 
 
   if (!isLoggedIn) {
-    return <Login/>
+    return <>
+      <Login/>
+      <ToastContainer transition={Zoom} autoClose={1500}/>
+    </>
   }
   return (
     <div className="todo">

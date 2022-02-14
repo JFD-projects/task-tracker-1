@@ -35,6 +35,9 @@ const authSlice = createSlice({
       state.name = null
       state.email = null
     },
+    setError: state => {
+      state.error = null
+    }
   }
 })
 
@@ -43,7 +46,8 @@ const {
   authRequestSuccess,
   authRequestFailed,
   userRequestSuccess,
-  userLogOut
+  userLogOut,
+  setError
 } = actions
 
 const authRequested = createAction("users/authRequested")
@@ -56,7 +60,7 @@ export const signIn = (payload) => async dispatch => {
     await setTokens(data)
     dispatch(authRequestSuccess(data.userId))
   } catch (error) {
-    dispatch(authRequestFailed(error.message))
+    dispatch(authRequestFailed(error.response.data))
   }
 }
 
@@ -66,8 +70,8 @@ export const signUp = (payload) => async dispatch => {
     const data = await authService.register(payload)
     await setTokens(data)
     dispatch(authRequestSuccess(data.userId))
-  } catch (e) {
-    dispatch(authRequestFailed(e.message))
+  } catch (error) {
+    dispatch(authRequestFailed(error.response.data))
   }
 }
 
@@ -87,6 +91,9 @@ export const logOut = () => dispatch => {
   dispatch(removeTasksData())
 }
 
+export const resetError = () => dispatch => {
+  dispatch(setError())
+}
 
 export const getError = () => state =>
   state.auth.error

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import TextField from "../common/TextField";
-import {useDispatch} from "react-redux";
-import {signUp} from "../../redux/reducers/authReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {getError, resetError, signUp} from "../../redux/reducers/authReducer";
 import Button from "../common/Button";
 import * as yup from "yup";
 import {useForm} from "../hooks/useForm";
+import {toast} from "react-toastify";
 
 const RegisterForm = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,14 @@ const RegisterForm = () => {
     password: '',
     name: '',
   })
+  const loginError = useSelector(getError())
+
+  useEffect(() => {
+    if (loginError) {
+      toast(loginError)
+      dispatch(resetError())
+    }
+  }, [loginError])
 
   const [errors, setErrors] = useState({})
 
